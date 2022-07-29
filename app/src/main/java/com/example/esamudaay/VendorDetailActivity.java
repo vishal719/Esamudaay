@@ -137,7 +137,6 @@ public class VendorDetailActivity extends AppCompatActivity {
                             }
 
                         }
-//                        System.out.println("failure list = "+ failure_reasons);
 
                         list.add(new VendorDetailModel(sku_id,product_name,business_name,error));
                         list2.add(new VendorDetailModel(sku_id,product_name,business_name,error));
@@ -155,11 +154,15 @@ public class VendorDetailActivity extends AppCompatActivity {
         });
         queue.add(jsonArrayRequest);
 
+
+
         list1 = new ArrayList<>();
         list1.add(new SortModel( binding.all ,binding.cardAll ));
         list1.add(new SortModel(binding.compliant ,binding.cardComplaint));
         list1.add(new SortModel( binding.noncompliant ,binding.cardNoncompliant));
         list1.add(new SortModel( binding.stats ,binding.cardstats));
+
+
         binding.cardAll.setCardBackgroundColor(Color.parseColor("#FF8400"));
         binding.all.setTextColor(Color.argb(255, 255, 255, 255));
         binding.cardAll.setOnClickListener(new View.OnClickListener() {
