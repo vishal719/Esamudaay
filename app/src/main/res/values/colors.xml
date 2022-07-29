@@ -19,7 +19,8 @@
     <color name="yellow_icon_color">#FBC820</color>
     <color name="basket">#DE0000</color>
     <color name="themeapp">#FF8400</color>
-
+    <color name="cardback">#D1D1D1</color>
+    <color name="categoryfront">#595959</color>
     <color name="cricket">#FF9437</color>
     <color name="volley">#FFEB6B</color>
     <color name="tt">#60cbe0</color>

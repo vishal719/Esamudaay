@@ -2,11 +2,12 @@ package com.example.esamudaay;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.graphics.Color;
@@ -15,25 +16,24 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.Toast;
 
-import com.example.esamudaay.databinding.ActivityGetStartedBinding;
 import com.example.esamudaay.Adapter.VendorsAdapter;
 import com.example.esamudaay.databinding.ActivityMainBinding;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.firebase.auth.FirebaseAuth;
+import com.example.esamudaay.models.CategoriesModel;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import com.example.esamudaay.models.VendersModel;
 
-import java.util.ArrayList;
-
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity  {
 
     ActivityMainBinding binding;
     ArrayList<VendersModel> list;
     VendorsAdapter adapter;
     FirebaseDatabase database;
+    ArrayList<CategoriesModel> list1;
 
 
 
@@ -52,11 +52,13 @@ public class MainActivity extends AppCompatActivity {
     public void hideStatus() {
         /* To make the status bar transparent*/
 
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
-        setWindowFlag(this, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false);
-        getWindow().setStatusBarColor(Color.TRANSPARENT);
-    }
+            setWindowFlag(this, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false);
+            getWindow().setStatusBarColor(Color.TRANSPARENT);
+
+        }}
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,47 +73,162 @@ public class MainActivity extends AppCompatActivity {
         }
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        list = new ArrayList<>();
-
-        list.add(new VendersModel("0635ecff-8fde-4185-8cd8-167efda42bbc", "Ravada Stores", R.drawable.ravada));
-        list.add(new VendersModel("0635ecff-8fde-4185-8cd8-167efda42bbcd", "Noodlers", R.drawable.noodler));
-        list.add(new VendersModel("0635ecff-8fde-4185-8cd8-167efda42bbcs", "Burger Up", R.drawable.burgerup));
-        list.add(new VendersModel("0635ecff-8fde-4185-8cd8-w", "Home Grow", R.drawable.home_grow));
-        list.add(new VendersModel("0635ecff-8fde-4185-8cd8-167efda42bbc", "Ravada Stores", R.drawable.ravada));
-        list.add(new VendersModel("0635ecff-8fde-4185-8cd8-167efda42bbcd", "Noodlers", R.drawable.noodler));
-        list.add(new VendersModel("0635ecff-8fde-4185-8cd8-167efda42bbcs", "Burger Up", R.drawable.burgerup));
-        list.add(new VendersModel("0635ecff-8fde-4185-8cd8-w", "Home Grow", R.drawable.home_grow));
-
 
 
         database = FirebaseDatabase.getInstance("https://esamudaay-4ae43-default-rtdb.asia-southeast1.firebasedatabase.app/");
-
-        ArrayList<CategoriesModel> list1 = new ArrayList<>();
-        list1.add(new CategoriesModel("Furniture", R.drawable.cabinet));
-        list1.add(new CategoriesModel("Clothing", R.drawable.clothing));
-        list1.add(new CategoriesModel("Electronics", R.drawable.computer));
-        list1.add(new CategoriesModel("Food", R.drawable.food));
-        list1.add(new CategoriesModel("Mechanical", R.drawable.mechanical));
-        list1.add(new CategoriesModel("Medicine", R.drawable.medicine));
-        list1.add(new CategoriesModel("Shoe", R.drawable.shoe));
-        list1.add(new CategoriesModel("Wearable", R.drawable.wearable));
-        list1.add(new CategoriesModel("Fitness", R.drawable.weightlifting));
-
-        CategoriesAdapter adapter1 = new CategoriesAdapter(list1);
-        LinearLayoutManager manager = new LinearLayoutManager(MainActivity.this, RecyclerView.HORIZONTAL, false);
-        binding.recyclerView3.setLayoutManager(manager);
-        binding.recyclerView3.setAdapter(adapter1);
-        adapter1.notifyDataSetChanged();
+        list = new ArrayList<>();
+        list1 = new ArrayList<>();
+        list.add(new VendersModel("0635ecff-8fde-4185-8cd8-167efda42bbc", "Ravada Stores", R.drawable.ravada));
+        list.add(new VendersModel("0635ecff-8fde-4185-8cd8-167efda42bbcd", "Noodlers", R.drawable.noodler));
+        list.add(new VendersModel("0635ecff-8fde-4185-8cd8-167efda42bbcs", "Burger Up", R.drawable.burgerup));
+        list.add(new VendersModel("0635ecff-8fde-4185-8cd8-w", "Home Grow", R.drawable.home_grow));
+        list.add(new VendersModel("0635ecff-8fde-4185-8cd8-167efda42bbc", "Ravada Stores", R.drawable.ravada));
+        list.add(new VendersModel("0635ecff-8fde-4185-8cd8-167efda42bbcd", "Noodlers", R.drawable.noodler));
+        list.add(new VendersModel("0635ecff-8fde-4185-8cd8-167efda42bbcs", "Burger Up", R.drawable.burgerup));
+        list.add(new VendersModel("0635ecff-8fde-4185-8cd8-w", "Home Grow", R.drawable.home_grow));
 
 
 
 
+        list1.add(new CategoriesModel("Furniture", binding.furnitureimage ,binding.furniture ));
+        list1.add(new CategoriesModel("Clothing",binding.clothingimage ,binding.clothing));
+        list1.add(new CategoriesModel("Electronics", binding.electimage ,binding.elect));
+        list1.add(new CategoriesModel("Food", binding.foodimage ,binding.food));
+        list1.add(new CategoriesModel("Mechanical", binding.mechanicalimage ,binding.mechanical));
+        list1.add(new CategoriesModel("Medicine", binding.medimage ,binding.med));
+        list1.add(new CategoriesModel("Shoe", binding.shoeimage ,binding.shoe));
+        list1.add(new CategoriesModel("Wearable", binding.wearableimage ,binding.wearable));
+        list1.add(new CategoriesModel("Fitness", binding.fitnessimage ,binding.fitness));
+
+        binding.furniture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                for(int i =0; i<list1.size();i++){
+                    list1.get(i).getImage().setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.categoryfront));
+                    list1.get(i).getCard().setCardBackgroundColor(Color.parseColor("#D1D1D1"));
+
+                    binding.furniture.setCardBackgroundColor(Color.parseColor("#FF8400"));
+                    binding.furnitureimage.setColorFilter(Color.argb(255, 255, 255, 255));
+                }
+            }
+        });
+
+        binding.clothing.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                for(int i =0; i<list1.size();i++){
+                    list1.get(i).getImage().setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.categoryfront));
+                    list1.get(i).getCard().setCardBackgroundColor(Color.parseColor("#D1D1D1"));
+
+                    binding.clothing.setCardBackgroundColor(Color.parseColor("#FF8400"));
+                    binding.clothingimage.setColorFilter(Color.argb(255, 255, 255, 255));
+                }
+            }
+        });
+
+        binding.elect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                for(int i =0; i<list1.size();i++){
+                    list1.get(i).getImage().setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.categoryfront));
+                    list1.get(i).getCard().setCardBackgroundColor(Color.parseColor("#D1D1D1"));
+
+                    binding.elect.setCardBackgroundColor(Color.parseColor("#FF8400"));
+                    binding.electimage.setColorFilter(Color.argb(255, 255, 255, 255));
+                }
+            }
+        });
+
+        binding.food.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                for(int i =0; i<list1.size();i++){
+                    list1.get(i).getImage().setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.categoryfront));
+                    list1.get(i).getCard().setCardBackgroundColor(Color.parseColor("#D1D1D1"));
+
+                    binding.food.setCardBackgroundColor(Color.parseColor("#FF8400"));
+                    binding.foodimage.setColorFilter(Color.argb(255, 255, 255, 255));
+                }
+            }
+        });
+
+
+
+        binding.mechanical.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                for(int i =0; i<list1.size();i++){
+                    list1.get(i).getImage().setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.categoryfront));
+                    list1.get(i).getCard().setCardBackgroundColor(Color.parseColor("#D1D1D1"));
+
+                    binding.mechanical.setCardBackgroundColor(Color.parseColor("#FF8400"));
+                    binding.mechanicalimage.setColorFilter(Color.argb(255, 255, 255, 255));
+                }
+            }
+        });
+
+
+        binding.med.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                for(int i =0; i<list1.size();i++){
+                    list1.get(i).getImage().setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.categoryfront));
+                    list1.get(i).getCard().setCardBackgroundColor(Color.parseColor("#D1D1D1"));
+
+                    binding.med.setCardBackgroundColor(Color.parseColor("#FF8400"));
+                    binding.medimage.setColorFilter(Color.argb(255, 255, 255, 255));
+                }
+            }
+        });
+
+        binding.shoe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                for(int i =0; i<list1.size();i++){
+                    list1.get(i).getImage().setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.categoryfront));
+                    list1.get(i).getCard().setCardBackgroundColor(Color.parseColor("#D1D1D1"));
+
+                    binding.shoe.setCardBackgroundColor(Color.parseColor("#FF8400"));
+                    binding.shoeimage.setColorFilter(Color.argb(255, 255, 255, 255));
+                }
+            }
+        });
+
+
+        binding.wearable.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                for(int i =0; i<list1.size();i++){
+                    list1.get(i).getImage().setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.categoryfront));
+                    list1.get(i).getCard().setCardBackgroundColor(Color.parseColor("#D1D1D1"));
+
+                    binding.wearable.setCardBackgroundColor(Color.parseColor("#FF8400"));
+                    binding.wearableimage.setColorFilter(Color.argb(255, 255, 255, 255));
+                }
+            }
+        });
+
+
+        binding.fitness.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                for(int i =0; i<list1.size();i++){
+                    list1.get(i).getImage().setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.categoryfront));
+                    list1.get(i).getCard().setCardBackgroundColor(Color.parseColor("#D1D1D1"));
+
+                    binding.fitness.setCardBackgroundColor(Color.parseColor("#FF8400"));
+                    binding.fitnessimage.setColorFilter(Color.argb(255, 255, 255, 255));
+                }
+            }
+        });
         adapter = new VendorsAdapter(list);
         GridLayoutManager mLayoutManager = new GridLayoutManager(MainActivity.this, 2);
         binding.vendorsList.setLayoutManager(mLayoutManager);
         binding.vendorsList.setAdapter(adapter);
 
-
         adapter.notifyDataSetChanged();
+
+
     }
+
 }

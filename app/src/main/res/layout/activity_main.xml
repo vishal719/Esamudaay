@@ -24,8 +24,8 @@
         android:id="@+id/filter"
         android:layout_width="32dp"
         android:layout_height="28dp"
-        android:scaleType="fitXY"
         android:layout_marginEnd="24dp"
+        android:scaleType="fitXY"
         android:src="@drawable/ic_outline_filter_alt_24"
         app:layout_constraintBottom_toBottomOf="@+id/textView7"
         app:layout_constraintEnd_toEndOf="parent"
@@ -47,9 +47,9 @@
         android:id="@+id/cardView13"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginStart="24dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
+        android:layout_marginStart="24dp"
         app:cardCornerRadius="15dp"
         app:cardElevation="0dp"
         app:layout_constraintBottom_toBottomOf="@+id/textView7"
@@ -68,8 +68,8 @@
         android:id="@+id/cardView7"
         android:layout_width="match_parent"
         android:layout_height="130dp"
-        android:layout_marginTop="40dp"
         android:layout_marginStart="24dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="24dp"
         app:cardBackgroundColor="#2B263A"
         app:cardCornerRadius="16dp"
@@ -108,24 +108,280 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
         android:layout_marginStart="24dp"
+        android:layout_marginTop="30dp"
         android:text="Categories"
         android:textColor="@color/black"
         android:textSize="14dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView7" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView3"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
+    <HorizontalScrollView
+        android:id="@+id/ll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="22dp"
-        android:layout_marginEnd="22dp"
         android:layout_marginTop="14dp"
+        android:scrollIndicators="none"
+        android:scrollbars="none"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/textView4">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="14dp"
+
+            android:orientation="horizontal">
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/food"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_gravity="left"
+                android:layout_marginRight="12dp"
+                android:clickable="true"
+                app:cardBackgroundColor="#D1D1D1"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/foodimage"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:src="@drawable/food"
+                    app:tint="#595959" />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/furniture"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_gravity="left"
+                android:layout_marginRight="12dp"
+                android:clickable="true"
+                app:cardBackgroundColor="#D1D1D1"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/furnitureimage"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:src="@drawable/furniture"
+                    app:tint="#595959" />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/clothing"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_gravity="left"
+                android:layout_marginRight="12dp"
+                android:clickable="true"
+                app:cardBackgroundColor="#D1D1D1"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/clothingimage"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:src="@drawable/clothing"
+                    app:tint="#595959" />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/elect"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_gravity="left"
+                android:layout_marginRight="12dp"
+                android:clickable="true"
+                app:cardBackgroundColor="#D1D1D1"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/electimage"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:src="@drawable/computer"
+                    app:tint="#595959" />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/mechanical"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_gravity="left"
+                android:layout_marginRight="12dp"
+                android:clickable="true"
+                app:cardBackgroundColor="#D1D1D1"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/mechanicalimage"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:src="@drawable/mechanical"
+                    app:tint="#595959" />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/med"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_gravity="left"
+                android:layout_marginRight="12dp"
+                android:clickable="true"
+                app:cardBackgroundColor="#D1D1D1"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/medimage"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:src="@drawable/medicine"
+                    app:tint="#595959" />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/shoe"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_gravity="left"
+                android:layout_marginRight="12dp"
+                android:clickable="true"
+                app:cardBackgroundColor="#D1D1D1"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/shoeimage"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:src="@drawable/shoe"
+                    app:tint="#595959" />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/wearable"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_gravity="left"
+                android:layout_marginRight="12dp"
+                android:clickable="true"
+                app:cardBackgroundColor="#D1D1D1"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/wearableimage"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:src="@drawable/wearable"
+                    app:tint="#595959" />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/fitness"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_gravity="left"
+                android:clickable="true"
+                android:layout_marginRight="40dp"
+                app:cardBackgroundColor="#D1D1D1"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/fitnessimage"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:src="@drawable/weightlifting"
+                    app:tint="#595959" />
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/vendors_list"
@@ -134,10 +390,10 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView3" />
+        app:layout_constraintTop_toBottomOf="@+id/ll" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
