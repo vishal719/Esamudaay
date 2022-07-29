@@ -3,6 +3,7 @@ package com.example.esamudaay;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -14,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -26,6 +28,7 @@ import com.example.esamudaay.Adapter.VendorsAdapter;
 import com.example.esamudaay.databinding.ActivityMainBinding;
 import com.example.esamudaay.databinding.ActivityVendorDetailBinding;
 import com.example.esamudaay.models.CategoriesModel;
+import com.example.esamudaay.models.SortModel;
 import com.example.esamudaay.models.VendersModel;
 import com.example.esamudaay.models.VendorDetailModel;
 import com.google.firebase.database.FirebaseDatabase;
@@ -35,12 +38,15 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class VendorDetailActivity extends AppCompatActivity {
 
     ActivityVendorDetailBinding binding;
     FirebaseDatabase database;
-    ArrayList<VendorDetailModel> list;
+    ArrayList<VendorDetailModel> list, list2;
+    ArrayList<SortModel> list1;
+
 
 
 
@@ -81,6 +87,7 @@ public class VendorDetailActivity extends AppCompatActivity {
         binding = ActivityVendorDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         list= new ArrayList<>();
+        list2= new ArrayList<>();
         database = FirebaseDatabase.getInstance("https://esamudaay-4ae43-default-rtdb.asia-southeast1.firebasedatabase.app/");
 
         ArrayList<Integer>  foodimages= new ArrayList<>();
@@ -133,7 +140,7 @@ public class VendorDetailActivity extends AppCompatActivity {
 //                        System.out.println("failure list = "+ failure_reasons);
 
                         list.add(new VendorDetailModel(sku_id,product_name,business_name,error));
-
+                        list2.add(new VendorDetailModel(sku_id,product_name,business_name,error));
                     adapter.notifyDataSetChanged();
                     } catch (JSONException e) {
                         Log.d("CATCH", e.toString());
@@ -148,5 +155,71 @@ public class VendorDetailActivity extends AppCompatActivity {
         });
         queue.add(jsonArrayRequest);
 
+        list1 = new ArrayList<>();
+        list1.add(new SortModel( binding.all ,binding.cardAll ));
+        list1.add(new SortModel(binding.compliant ,binding.cardComplaint));
+        list1.add(new SortModel( binding.noncompliant ,binding.cardNoncompliant));
+        list1.add(new SortModel( binding.stats ,binding.cardstats));
+        binding.cardAll.setCardBackgroundColor(Color.parseColor("#FF8400"));
+        binding.all.setTextColor(Color.argb(255, 255, 255, 255));
+        binding.cardAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                for(int i =0; i<list1.size();i++){
+                    list1.get(i).getText().setTextColor(ContextCompat.getColor(VendorDetailActivity.this,R.color.graphLine));
+                    list1.get(i).getCard().setCardBackgroundColor(Color.parseColor("#FFFFFFFF"));
+
+                    binding.cardAll.setCardBackgroundColor(Color.parseColor("#FF8400"));
+                    binding.all.setTextColor(Color.argb(255, 255, 255, 255));
+                }
+            }
+        });
+
+        binding.cardComplaint.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                for(int i =0; i<list1.size();i++) {
+                    list1.get(i).getText().setTextColor(ContextCompat.getColor(VendorDetailActivity.this, R.color.graphLine));
+                    list1.get(i).getCard().setCardBackgroundColor(Color.parseColor("#FFFFFFFF"));
+
+                    binding.cardComplaint.setCardBackgroundColor(Color.parseColor("#FF8400"));
+                    binding.compliant.setTextColor(Color.argb(255, 255, 255, 255));
+
+                }
+            }
+        });
+
+        binding.cardNoncompliant.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                for(int i =0; i<list1.size();i++){
+                    list1.get(i).getText().setTextColor(ContextCompat.getColor(VendorDetailActivity.this,R.color.graphLine));
+                    list1.get(i).getCard().setCardBackgroundColor(Color.parseColor("#FFFFFFFF"));
+
+                    binding.cardNoncompliant.setCardBackgroundColor(Color.parseColor("#FF8400"));
+                    binding.noncompliant.setTextColor(Color.argb(255, 255, 255, 255));
+                }
+            }
+        });
+
+        binding.cardstats.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                for(int i =0; i<list1.size();i++){
+                    list1.get(i).getText().setTextColor(ContextCompat.getColor(VendorDetailActivity.this,R.color.graphLine));
+                    list1.get(i).getCard().setCardBackgroundColor(Color.parseColor("#FFFFFFFF"));
+
+                    binding.cardstats.setCardBackgroundColor(Color.parseColor("#FF8400"));
+                    binding.stats.setTextColor(Color.argb(255, 255, 255, 255));
+                }
+            }
+        });
+
+        binding.imageView6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 }

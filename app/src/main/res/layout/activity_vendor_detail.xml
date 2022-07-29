@@ -51,85 +51,124 @@
         app:layout_constraintTop_toTopOf="@+id/orderdetails"
         app:tint="@color/AppTextColour" />
 
-
-    <LinearLayout
-        android:layout_width="match_parent"
+    <HorizontalScrollView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:orientation="horizontal"
         android:layout_marginLeft="28dp"
+        android:layout_marginRight="28dp"
+        android:scrollbars="none"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view">
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/card_all"
-            android:layout_width="60dp"
-            android:layout_height="38dp"
-            android:layout_gravity="left"
-            android:clickable="true"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="0dp"
-            app:strokeColor="@color/categoryfront"
-            app:strokeWidth="1dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:text="All"
-                android:textColor="@color/AppTextColour" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-        </com.google.android.material.card.MaterialCardView>
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_all"
+                android:layout_width="60dp"
+                android:layout_height="38dp"
+                android:layout_gravity="left"
+                android:clickable="true"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="0dp"
+                app:strokeColor="@color/categoryfront"
+                app:strokeWidth="1dp">
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/card_upcoming"
-            android:layout_width="120dp"
-            android:layout_height="38dp"
-            android:layout_gravity="left"
-            android:layout_marginLeft="12dp"
-            android:clickable="true"
-            app:strokeColor="@color/categoryfront"
-            app:strokeWidth="1dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="0dp">
+                <TextView
+                    android:id="@+id/all"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="All"
+                    android:textColor="@color/AppTextColour" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:gravity="center"
-                android:text="Compliant"
-                android:textColor="@color/AppTextColour" />
+            </com.google.android.material.card.MaterialCardView>
 
-        </com.google.android.material.card.MaterialCardView>
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_complaint"
+                android:layout_width="110dp"
+                android:layout_height="38dp"
+                android:layout_gravity="left"
+                android:layout_marginLeft="12dp"
+                android:clickable="true"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="0dp"
+                app:strokeColor="@color/categoryfront"
+                app:strokeWidth="1dp">
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/card_free"
-            android:layout_width="90dp"
-            android:layout_height="38dp"
-            android:layout_gravity="left"
-            android:layout_marginLeft="12dp"
-            android:clickable="true"
-            app:strokeColor="@color/categoryfront"
-            app:strokeWidth="1dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="0dp">
+                <TextView
+                    android:id="@+id/compliant"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:gravity="center"
+                    android:text="Compliant"
+                    android:textColor="@color/AppTextColour" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:gravity="center"
-                android:text="Other"
-                android:textColor="@color/AppTextColour" />
+            </com.google.android.material.card.MaterialCardView>
 
-        </com.google.android.material.card.MaterialCardView>
+            <com.google.android.material.card.MaterialCardView
 
-    </LinearLayout>
+                android:id="@+id/card_noncompliant"
+                android:layout_width="140dp"
+                android:layout_height="38dp"
+                android:layout_gravity="left"
+                android:layout_marginLeft="12dp"
+                android:clickable="true"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="0dp"
+                app:strokeColor="@color/categoryfront"
+                app:strokeWidth="1dp">
+
+                <TextView
+                    android:id="@+id/noncompliant"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:gravity="center"
+                    android:text="Non-Compliant"
+                    android:textColor="@color/AppTextColour" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+
+                android:id="@+id/cardstats"
+                android:layout_width="84dp"
+                android:layout_height="38dp"
+                android:layout_gravity="left"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="48dp"
+                android:clickable="true"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="0dp"
+                app:strokeColor="@color/categoryfront"
+                app:strokeWidth="1dp">
+
+                <TextView
+                    android:id="@+id/stats"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:gravity="center"
+                    android:text="Stats"
+                    android:textColor="@color/AppTextColour" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+    </HorizontalScrollView>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/productrecycler"
         android:layout_width="match_parent"
