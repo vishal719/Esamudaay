@@ -98,26 +98,31 @@ public class VendorDetailActivity extends AppCompatActivity {
 
                     try {
                         ArrayList<String> error = new ArrayList<>();
+
                         JSONObject responseObj = response.getJSONObject(i);
                         String sku_id = responseObj.getString("sku_id");
                         String product_name = responseObj.getString("product_name");
                         String business_name = responseObj.getString("business_name");
-//                        String failure_reasons = responseObj.getString("failure_reasons");
-                        JSONArray array=responseObj.getJSONArray("failure_reasons");
-//                        Log.d("REPONSE",sku_id+ " "+ product_name+ " "+array.length());
-                        if(array.length()>0)
-                        {
-                            for(int j=0; j<array.length();j++){
-                                error.add(array.getString(j));
-//                                Log.d("TAG", error.get(j));
-                            }
+                        String failure_reasons = responseObj.getString("failure_reasons");
+
+                        if(failure_reasons.startsWith("null")){
+                            error.add("null");
                         }
-//                        Log.d("TAG","df"+array.length());
-//                        for(int j=0;j<array.length();j++) {
-////                            JSONObject object1=array.getJSONObject(j);
-//                            Log.d("ERROR", array.getString(j).toString());
-//                        }
+                        else{
+                            JSONArray array = responseObj.getJSONArray("failure_reasons");
+
+                            if(array.length()>0)
+                            {
+                                for(int j=0; j<array.length();j++){
+                                    error.add(array.getString(j));
+                                }
+                            }
+
+                        }
+//                        System.out.println("failure list = "+ failure_reasons);
+
                         list.add(new VendorDetailModel(sku_id,product_name,business_name,error));
+
                     adapter.notifyDataSetChanged();
                     } catch (JSONException e) {
                         e.printStackTrace();

@@ -8,6 +8,9 @@ public class VendorDetailModel {
     String businessname;
     ArrayList<String>  failurereasons;
 
+    public VendorDetailModel() {
+    }
+
     public VendorDetailModel(String skuid, String productname, String businessname, ArrayList<String> failurereasons) {
         this.skuid = skuid;
         this.productname = productname;

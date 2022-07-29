@@ -36,13 +36,13 @@ public class VendorDetailAdapter extends RecyclerView.Adapter<VendorDetailAdapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull NewsViewHolder holder, @SuppressLint("RecyclerView") int position) {
+    public void onBindViewHolder(@NonNull NewsViewHolder holder,  int position) {
         VendorDetailModel model1 = list.get(position);
         holder.name.setText(model1.getProductname());
         holder.vendor.setText(model1.getBusinessname());
-        holder.sku.setText(model1.getSkuid());
+        holder.sku.setText("Sku : " + model1.getSkuid());
 
-        if(model1.getFailurereasons().size()>0) {
+        if(!model1.getFailurereasons().get(0).equals("null")) {
             holder.complaince.setText("Error!");
 
         }
