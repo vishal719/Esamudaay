@@ -39,6 +39,14 @@ public class VendorsAdapter extends RecyclerView.Adapter<VendorsAdapter.viewHold
 
         Glide.with(holder.itemView.getContext()).load(model.getImage()).into(holder.image);
         holder.name.setText(model.getName());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+            }
+        });
     }
 
     @Override

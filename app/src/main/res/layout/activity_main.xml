@@ -20,17 +20,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/filter"
-        android:layout_width="32dp"
-        android:layout_height="28dp"
-        android:layout_marginEnd="24dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/ic_outline_filter_alt_24"
-        app:layout_constraintBottom_toBottomOf="@+id/textView7"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView7" />
-
 
     <ImageView
         android:id="@+id/profileCircle"
@@ -143,7 +132,7 @@
                 android:layout_gravity="left"
                 android:layout_marginRight="12dp"
                 android:clickable="true"
-                app:cardBackgroundColor="#D1D1D1"
+                app:cardBackgroundColor="#73D1D1D1"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -159,7 +148,7 @@
                     android:layout_margin="5dp"
                     android:gravity="center"
                     android:src="@drawable/food"
-                    app:tint="#595959" />
+                    app:tint="#D1595959" />
 
             </androidx.cardview.widget.CardView>
 
@@ -170,7 +159,7 @@
                 android:layout_gravity="left"
                 android:layout_marginRight="12dp"
                 android:clickable="true"
-                app:cardBackgroundColor="#D1D1D1"
+                app:cardBackgroundColor="#73D1D1D1"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -186,7 +175,7 @@
                     android:layout_margin="5dp"
                     android:gravity="center"
                     android:src="@drawable/furniture"
-                    app:tint="#595959" />
+                    app:tint="#D1595959" />
 
             </androidx.cardview.widget.CardView>
 
@@ -197,7 +186,7 @@
                 android:layout_gravity="left"
                 android:layout_marginRight="12dp"
                 android:clickable="true"
-                app:cardBackgroundColor="#D1D1D1"
+                app:cardBackgroundColor="#73D1D1D1"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -213,7 +202,7 @@
                     android:layout_margin="5dp"
                     android:gravity="center"
                     android:src="@drawable/clothing"
-                    app:tint="#595959" />
+                    app:tint="#D1595959" />
 
             </androidx.cardview.widget.CardView>
 
@@ -224,7 +213,7 @@
                 android:layout_gravity="left"
                 android:layout_marginRight="12dp"
                 android:clickable="true"
-                app:cardBackgroundColor="#D1D1D1"
+                app:cardBackgroundColor="#73D1D1D1"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -240,7 +229,7 @@
                     android:layout_margin="5dp"
                     android:gravity="center"
                     android:src="@drawable/computer"
-                    app:tint="#595959" />
+                    app:tint="#D1595959" />
 
             </androidx.cardview.widget.CardView>
 
@@ -251,7 +240,7 @@
                 android:layout_gravity="left"
                 android:layout_marginRight="12dp"
                 android:clickable="true"
-                app:cardBackgroundColor="#D1D1D1"
+                app:cardBackgroundColor="#73D1D1D1"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -267,7 +256,7 @@
                     android:layout_margin="5dp"
                     android:gravity="center"
                     android:src="@drawable/mechanical"
-                    app:tint="#595959" />
+                    app:tint="#D1595959" />
 
             </androidx.cardview.widget.CardView>
 
@@ -278,7 +267,7 @@
                 android:layout_gravity="left"
                 android:layout_marginRight="12dp"
                 android:clickable="true"
-                app:cardBackgroundColor="#D1D1D1"
+                app:cardBackgroundColor="#73D1D1D1"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -294,7 +283,7 @@
                     android:layout_margin="5dp"
                     android:gravity="center"
                     android:src="@drawable/medicine"
-                    app:tint="#595959" />
+                    app:tint="#D1595959" />
 
             </androidx.cardview.widget.CardView>
 
@@ -305,7 +294,7 @@
                 android:layout_gravity="left"
                 android:layout_marginRight="12dp"
                 android:clickable="true"
-                app:cardBackgroundColor="#D1D1D1"
+                app:cardBackgroundColor="#73D1D1D1"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -321,7 +310,7 @@
                     android:layout_margin="5dp"
                     android:gravity="center"
                     android:src="@drawable/shoe"
-                    app:tint="#595959" />
+                    app:tint="#D1595959" />
 
             </androidx.cardview.widget.CardView>
 
@@ -332,7 +321,7 @@
                 android:layout_gravity="left"
                 android:layout_marginRight="12dp"
                 android:clickable="true"
-                app:cardBackgroundColor="#D1D1D1"
+                app:cardBackgroundColor="#73D1D1D1"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -348,7 +337,7 @@
                     android:layout_margin="5dp"
                     android:gravity="center"
                     android:src="@drawable/wearable"
-                    app:tint="#595959" />
+                    app:tint="#D1595959" />
 
             </androidx.cardview.widget.CardView>
 
@@ -359,7 +348,7 @@
                 android:layout_gravity="left"
                 android:clickable="true"
                 android:layout_marginRight="40dp"
-                app:cardBackgroundColor="#D1D1D1"
+                app:cardBackgroundColor="#73D1D1D1"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -375,7 +364,7 @@
                     android:layout_margin="5dp"
                     android:gravity="center"
                     android:src="@drawable/weightlifting"
-                    app:tint="#595959" />
+                    app:tint="#D1595959" />
 
             </androidx.cardview.widget.CardView>
 
@@ -390,7 +379,8 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="30dp"
+        android:overScrollMode="never"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
