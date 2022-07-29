@@ -45,6 +45,7 @@ public class VendorsAdapter extends RecyclerView.Adapter<VendorsAdapter.viewHold
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), VendorDetailActivity.class);
+                intent.putExtra("id", model.getId());
                 view.getContext().startActivity(intent);
             }
         });

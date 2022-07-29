@@ -85,14 +85,14 @@ public class MainActivity extends AppCompatActivity  {
         database = FirebaseDatabase.getInstance("https://esamudaay-4ae43-default-rtdb.asia-southeast1.firebasedatabase.app/");
         list = new ArrayList<>();
         list1 = new ArrayList<>();
-        list.add(new VendersModel("0635ecff-8fde-4185-8cd8-167efda42bbc", "Ravada Stores", R.drawable.ravada));
-        list.add(new VendersModel("4a1bc143-a3c0-4249-a942-f30b5801aa30", "Zara", R.drawable.noodler));
-        list.add(new VendersModel("e0aa3966-6880-42f8-84a6-ed31d3e349a2", "Bake master", R.drawable.burgerup));
-        list.add(new VendersModel("c09f2b53-ae0d-435f-b428-761586c696a1", "Poorva", R.drawable.home_grow));
-        list.add(new VendersModel("0635ecff-8fde-4185-8cd8-167efda42bbc", "Ravada Stores", R.drawable.ravada));
-        list.add(new VendersModel("0635ecff-8fde-4185-8cd8-167efda42bbcd", "Noodlers", R.drawable.noodler));
+        list.add(new VendersModel("0635ecff-8fde-4185-8cd8-167efda42bbc", "Ravada Stores", R.drawable.ravada2));
+        list.add(new VendersModel("4a1bc143-a3c0-4249-a942-f30b5801aa30", "Zara", R.drawable.zara_2));
+        list.add(new VendersModel("c09f2b53-ae0d-435f-b428-761586c696a1", "Poorva", R.drawable.poorva));
+        list.add(new VendersModel("e0aa3966-6880-42f8-84a6-ed31d3e349a2", "Bake master", R.drawable.bake_master));
         list.add(new VendersModel("0635ecff-8fde-4185-8cd8-167efda42bbcs", "Burger Up", R.drawable.burgerup));
         list.add(new VendersModel("0635ecff-8fde-4185-8cd8-w", "Home Grow", R.drawable.home_grow));
+        list.add(new VendersModel("0635ecff-8fde-4185-8cd8-167efda42bbc", "Sweets", R.drawable.ravada));
+        list.add(new VendersModel("0635ecff-8fde-4185-8cd8-167efda42bbcd", "Noodlers", R.drawable.noodler));
 
 
 

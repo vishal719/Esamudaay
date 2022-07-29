@@ -47,6 +47,8 @@ public class VendorDetailActivity extends AppCompatActivity {
     ArrayList<VendorDetailModel> list, list2;
     ArrayList<SortModel> list1;
 
+    String url = "";
+
     public static void setWindowFlag(Activity activity, final int bits, boolean on) {
         Window win = activity.getWindow();
         WindowManager.LayoutParams winParams = win.getAttributes();
@@ -86,6 +88,8 @@ public class VendorDetailActivity extends AppCompatActivity {
         foodimages.add(R.drawable.a7);
         foodimages.add(R.drawable.a8);
 
+        url = "https://api.test.esamudaay.com/api/v1/businesses/"+getIntent().getStringExtra("id").trim()+"/report";
+        System.out.println("url" + url);
 
         VendorDetailAdapter adapter = new VendorDetailAdapter(list, foodimages);
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(VendorDetailActivity.this,LinearLayoutManager.VERTICAL,false);
@@ -95,7 +99,7 @@ public class VendorDetailActivity extends AppCompatActivity {
 
         RequestQueue queue = Volley.newRequestQueue(VendorDetailActivity.this);
 
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, "https://api.test.esamudaay.com/api/v1/businesses/0635ecff-8fde-4185-8cd8-167efda42bbc/report", null, new Response.Listener<JSONArray>() {
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 list.clear();
@@ -114,6 +118,9 @@ public class VendorDetailActivity extends AppCompatActivity {
 
                         if(failure_reasons.startsWith("null")){
                             error.add("null");
+                        }
+                        else if (!failure_reasons.startsWith("[")){
+                            error.add(failure_reasons);
                         }
                         else{
                             JSONArray array = responseObj.getJSONArray("failure_reasons");
@@ -167,7 +174,7 @@ public class VendorDetailActivity extends AppCompatActivity {
                 list.clear();
                 RequestQueue queue = Volley.newRequestQueue(VendorDetailActivity.this);
 
-                JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, "https://api.test.esamudaay.com/api/v1/businesses/0635ecff-8fde-4185-8cd8-167efda42bbc/report", null, new Response.Listener<JSONArray>() {
+                JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
                         Log.d("RESPONSE FINAL", String.valueOf(response.length()));
@@ -185,6 +192,10 @@ public class VendorDetailActivity extends AppCompatActivity {
                                 if(failure_reasons.startsWith("null")){
                                     error.add("null");
                                 }
+                                else if (!failure_reasons.startsWith("[")){
+                                    error.add(failure_reasons);
+                                }
+
                                 else{
                                     JSONArray array = responseObj.getJSONArray("failure_reasons");
 
@@ -230,7 +241,7 @@ public class VendorDetailActivity extends AppCompatActivity {
 
                 RequestQueue queue1 = Volley.newRequestQueue(VendorDetailActivity.this);
 
-                JsonArrayRequest jsonArrayRequest1 = new JsonArrayRequest(Request.Method.GET, "https://api.test.esamudaay.com/api/v1/businesses/0635ecff-8fde-4185-8cd8-167efda42bbc/report", null, new Response.Listener<JSONArray>() {
+                JsonArrayRequest jsonArrayRequest1 = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
                         Log.d("RESPONSE FINAL", String.valueOf(response.length()));
@@ -250,6 +261,10 @@ public class VendorDetailActivity extends AppCompatActivity {
                                     list.add(new VendorDetailModel(sku_id,product_name,business_name,error));
 
                                 }
+                                else if (!failure_reasons.startsWith("[")){
+                                    error.add(failure_reasons);
+                                }
+
                                 else{
                                     JSONArray array = responseObj.getJSONArray("failure_reasons");
 
@@ -295,7 +310,7 @@ public class VendorDetailActivity extends AppCompatActivity {
 
                 RequestQueue queue2 = Volley.newRequestQueue(VendorDetailActivity.this);
 
-                JsonArrayRequest jsonArrayRequest2 = new JsonArrayRequest(Request.Method.GET, "https://api.test.esamudaay.com/api/v1/businesses/0635ecff-8fde-4185-8cd8-167efda42bbc/report", null, new Response.Listener<JSONArray>() {
+                JsonArrayRequest jsonArrayRequest2 = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
                         Log.d("RESPONSE FINAL", String.valueOf(response.length()));
@@ -314,6 +329,10 @@ public class VendorDetailActivity extends AppCompatActivity {
                                     error.add("null");
 
                                 }
+                                else if (!failure_reasons.startsWith("[")){
+                                    error.add(failure_reasons);
+                                }
+
                                 else{
                                     JSONArray array = responseObj.getJSONArray("failure_reasons");
 
@@ -364,5 +383,12 @@ public class VendorDetailActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        url = "https://api.test.esamudaay.com/api/v1/businesses/"+getIntent().getStringExtra("id").trim()+"/report";
+
     }
 }
