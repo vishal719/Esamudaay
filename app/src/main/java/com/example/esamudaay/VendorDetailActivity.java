@@ -83,7 +83,18 @@ public class VendorDetailActivity extends AppCompatActivity {
         list= new ArrayList<>();
         database = FirebaseDatabase.getInstance("https://esamudaay-4ae43-default-rtdb.asia-southeast1.firebasedatabase.app/");
 
-        VendorDetailAdapter adapter = new VendorDetailAdapter(list);
+        ArrayList<Integer>  foodimages= new ArrayList<>();
+        foodimages.add(R.drawable.a1);
+        foodimages.add(R.drawable.a2);
+        foodimages.add(R.drawable.a3);
+        foodimages.add(R.drawable.a4);
+        foodimages.add(R.drawable.a5);
+        foodimages.add(R.drawable.a6);
+        foodimages.add(R.drawable.a7);
+        foodimages.add(R.drawable.a8);
+
+
+        VendorDetailAdapter adapter = new VendorDetailAdapter(list, foodimages);
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(VendorDetailActivity.this,LinearLayoutManager.VERTICAL,false);
         binding.productrecycler.setLayoutManager(mLayoutManager);
         binding.productrecycler.setAdapter(adapter);
@@ -125,7 +136,7 @@ public class VendorDetailActivity extends AppCompatActivity {
 
                     adapter.notifyDataSetChanged();
                     } catch (JSONException e) {
-                        e.printStackTrace();
+                        Log.d("CATCH", e.toString());
                     }
                 }
             }

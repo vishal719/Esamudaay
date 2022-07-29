@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.esamudaay.R;
@@ -19,13 +20,16 @@ import com.example.esamudaay.models.VendorDetailModel;
 
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class VendorDetailAdapter extends RecyclerView.Adapter<VendorDetailAdapter.NewsViewHolder> {
     ArrayList<VendorDetailModel> list;
+    ArrayList<Integer> pic = new ArrayList<>();
+    private Random randomGenerator;
 
-
-    public VendorDetailAdapter(ArrayList<VendorDetailModel> list) {
+    public VendorDetailAdapter(ArrayList<VendorDetailModel> list, ArrayList<Integer> pic) {
         this.list = list;
+        this.pic=pic;
     }
 
     @NonNull
@@ -41,9 +45,14 @@ public class VendorDetailAdapter extends RecyclerView.Adapter<VendorDetailAdapte
         holder.name.setText(model1.getProductname());
         holder.vendor.setText(model1.getBusinessname());
         holder.sku.setText("Sku : " + model1.getSkuid());
+        randomGenerator= new Random();
+        int index = randomGenerator.nextInt(pic.size());
 
+        holder.vendorimage.setImageResource(pic.get(index));
         if(!model1.getFailurereasons().get(0).equals("null")) {
             holder.complaince.setText("Error!");
+            holder.complaince.setBackground(ContextCompat.getDrawable(holder.itemView.getContext(), R.drawable.unavailable_button));
+            holder.complaince.setTextColor(Color.parseColor("#FA4627"));
 
         }
         else
@@ -55,6 +64,16 @@ public class VendorDetailAdapter extends RecyclerView.Adapter<VendorDetailAdapte
     public int getItemCount() {
         return list.size();
     }
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
+
 
     public class NewsViewHolder extends RecyclerView.ViewHolder{
 
