@@ -2,7 +2,7 @@ package com.example.esamudaay.models;
 
 import java.util.ArrayList;
 
-public class VendorDetailModel {
+public class VendorDetailModel  {
     String skuid;
     String productname;
     String businessname;

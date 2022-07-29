@@ -57,13 +57,13 @@ public class VendorDetailAdapter extends RecyclerView.Adapter<VendorDetailAdapte
 
         holder.vendorimage.setImageResource(pic.get(index));
         if(!model1.getFailurereasons().get(0).equals("null")) {
-            holder.complaince.setText("Error!");
+            holder.complaince.setText("Non-Compliant");
             holder.complaince.setBackground(ContextCompat.getDrawable(holder.itemView.getContext(), R.drawable.unavailable_button));
             holder.complaince.setTextColor(Color.parseColor("#FA4627"));
 
         }
         else
-            holder.complaince.setText("Approved");
+            holder.complaince.setText("Compliant");
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -8,9 +8,11 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -374,6 +376,10 @@ public class VendorDetailActivity extends AppCompatActivity {
                     binding.cardstats.setCardBackgroundColor(Color.parseColor("#FF8400"));
                     binding.stats.setTextColor(Color.argb(255, 255, 255, 255));
                 }
+
+
+                StatsBottomSheetFragment statsBottomSheetFragment = new StatsBottomSheetFragment();
+                statsBottomSheetFragment.show(getSupportFragmentManager(), statsBottomSheetFragment.getTag());
             }
         });
 
@@ -390,5 +396,9 @@ public class VendorDetailActivity extends AppCompatActivity {
         super.onResume();
         url = "https://api.test.esamudaay.com/api/v1/businesses/"+getIntent().getStringExtra("id").trim()+"/report";
 
+    }
+    public ArrayList<VendorDetailModel> getlist()
+    {
+        return list;
     }
 }
