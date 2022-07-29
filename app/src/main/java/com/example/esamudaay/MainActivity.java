@@ -1,6 +1,7 @@
 package com.example.esamudaay;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -81,19 +82,26 @@ public class MainActivity extends AppCompatActivity  {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        binding.cardView13.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent= new Intent(MainActivity.this, ProfileActivity.class);
+                startActivity(intent);
+            }
+        });
 
         database = FirebaseDatabase.getInstance("https://esamudaay-4ae43-default-rtdb.asia-southeast1.firebasedatabase.app/");
         list = new ArrayList<>();
         list2 = new ArrayList<>();
         list1 = new ArrayList<>();
-        list.add(new VendersModel("0635ecff-8fde-4185-8cd8-167efda42bbc", "Ravada Stores", R.drawable.ravada2,"Food"));
-        list.add(new VendersModel("4a1bc143-a3c0-4249-a942-f30b5801aa30", "Zara", R.drawable.zara_2,"Food,Clothing"));
-        list.add(new VendersModel("c09f2b53-ae0d-435f-b428-761586c696a1", "Poorva", R.drawable.poorva,"Food,Medicine"));
-        list.add(new VendersModel("e0aa3966-6880-42f8-84a6-ed31d3e349a2", "Bake master", R.drawable.bake_master,"Medicine,Food"));
-        list.add(new VendersModel("0635ecff-8fde-4185-8cd8-167efda42bbcs", "Burger Up", R.drawable.burgerup,"Food"));
-        list.add(new VendersModel("0635ecff-8fde-4185-8cd8-w", "Home Grow", R.drawable.home_grow,"Food"));
-        list.add(new VendersModel("0635ecff-8fde-4185-8cd8-167efda42bbc", "Sweets", R.drawable.ravada,"Food"));
-        list.add(new VendersModel("0635ecff-8fde-4185-8cd8-167efda42bbcd", "Noodlers", R.drawable.noodler,"Food"));
+        list.add(new VendersModel("0635ecff-8fde-4185-8cd8-167efda42bbc", "Ravada Stores", R.drawable.ravada2,"Food",""));
+        list.add(new VendersModel("4a1bc143-a3c0-4249-a942-f30b5801aa30", "Zara", R.drawable.zara_2,"Food","Clothing"));
+        list.add(new VendersModel("c09f2b53-ae0d-435f-b428-761586c696a1", "Poorva", R.drawable.poorva,"Food","Medicine"));
+        list.add(new VendersModel("e0aa3966-6880-42f8-84a6-ed31d3e349a2", "Bake master", R.drawable.bake_master,"Medicine","Food"));
+        list.add(new VendersModel("0635ecff-8fde-4185-8cd8-167efda42bbcs", "Burger Up", R.drawable.burgerup,"Food",""));
+        list.add(new VendersModel("0635ecff-8fde-4185-8cd8-w", "Home Grow", R.drawable.home_grow,"Food",""));
+        list.add(new VendersModel("0635ecff-8fde-4185-8cd8-167efda42bbc", "Sweets", R.drawable.ravada,"Food",""));
+        list.add(new VendersModel("0635ecff-8fde-4185-8cd8-167efda42bbcd", "Noodlers", R.drawable.noodler,"Food",""));
 
         for(int i=0;i<list.size();i++){
             list2.add(list.get(i));
@@ -122,6 +130,8 @@ public class MainActivity extends AppCompatActivity  {
                     binding.furniture.setCardBackgroundColor(Color.parseColor("#FF8400"));
                     binding.furnitureimage.setColorFilter(Color.argb(255, 255, 255, 255));
                 }
+                list.clear();
+                adapter.notifyDataSetChanged();
             }
         });
 
@@ -137,17 +147,14 @@ public class MainActivity extends AppCompatActivity  {
                 }
                 list.clear();
                 adapter.notifyDataSetChanged();
-
                 for(int j=0;j<list2.size();j++)
                 {
-                    String category = list2.get(j).getCategory();
-                    String[] strArray = null;
-                    strArray = category.split(",");
-                    for(int k=0;k<strArray.length;k++){
-                        if(strArray[k].equals("Clothing"));
+
+                    String category1 = list2.get(j).getCategory1();
+                    String category2 = list2.get(j).getCategory2();
+                    if(category1.equals("Clothing") || category2.equals("Clothing"))
                         list.add(list2.get(j));
-                        adapter.notifyDataSetChanged();
-                    }
+
                 }
                 adapter.notifyDataSetChanged();
             }
@@ -163,6 +170,8 @@ public class MainActivity extends AppCompatActivity  {
                     binding.elect.setCardBackgroundColor(Color.parseColor("#FF8400"));
                     binding.electimage.setColorFilter(Color.argb(255, 255, 255, 255));
                 }
+                list.clear();
+                adapter.notifyDataSetChanged();
             }
         });
 
@@ -176,6 +185,18 @@ public class MainActivity extends AppCompatActivity  {
                     binding.food.setCardBackgroundColor(Color.parseColor("#FF8400"));
                     binding.foodimage.setColorFilter(Color.argb(255, 255, 255, 255));
                 }
+                list.clear();
+                adapter.notifyDataSetChanged();
+                for(int j=0;j<list2.size();j++)
+                {
+
+                    String category1 = list2.get(j).getCategory1();
+                    String category2 = list2.get(j).getCategory2();
+                    if(category1.equals("Food") || category2.equals("Food"))
+                        list.add(list2.get(j));
+
+                }
+                adapter.notifyDataSetChanged();
             }
         });
 
@@ -191,6 +212,8 @@ public class MainActivity extends AppCompatActivity  {
                     binding.mechanical.setCardBackgroundColor(Color.parseColor("#FF8400"));
                     binding.mechanicalimage.setColorFilter(Color.argb(255, 255, 255, 255));
                 }
+                list.clear();
+                adapter.notifyDataSetChanged();
             }
         });
 
@@ -205,6 +228,18 @@ public class MainActivity extends AppCompatActivity  {
                     binding.med.setCardBackgroundColor(Color.parseColor("#FF8400"));
                     binding.medimage.setColorFilter(Color.argb(255, 255, 255, 255));
                 }
+                list.clear();
+                adapter.notifyDataSetChanged();
+                for(int j=0;j<list2.size();j++)
+                {
+
+                    String category1 = list2.get(j).getCategory1();
+                    String category2 = list2.get(j).getCategory2();
+                    if(category1.equals("Medicine") || category2.equals("Medicine"))
+                        list.add(list2.get(j));
+
+                }
+                adapter.notifyDataSetChanged();
             }
         });
 
@@ -218,6 +253,8 @@ public class MainActivity extends AppCompatActivity  {
                     binding.shoe.setCardBackgroundColor(Color.parseColor("#FF8400"));
                     binding.shoeimage.setColorFilter(Color.argb(255, 255, 255, 255));
                 }
+                list.clear();
+                adapter.notifyDataSetChanged();
             }
         });
 
@@ -232,6 +269,8 @@ public class MainActivity extends AppCompatActivity  {
                     binding.wearable.setCardBackgroundColor(Color.parseColor("#FF8400"));
                     binding.wearableimage.setColorFilter(Color.argb(255, 255, 255, 255));
                 }
+                list.clear();
+                adapter.notifyDataSetChanged();
             }
         });
 
@@ -246,6 +285,8 @@ public class MainActivity extends AppCompatActivity  {
                     binding.fitness.setCardBackgroundColor(Color.parseColor("#FF8400"));
                     binding.fitnessimage.setColorFilter(Color.argb(255, 255, 255, 255));
                 }
+                list.clear();
+                adapter.notifyDataSetChanged();
             }
         });
         adapter = new VendorsAdapter(list);

@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Esamudaay">
         <activity
+            android:name=".ProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".VendorDetailActivity"
             android:exported="false" />
         <activity

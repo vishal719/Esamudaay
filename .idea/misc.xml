@@ -3,14 +3,22 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Asus/Desktop/Esamudaay/Esamudaay/app/src/main/res/drawable-v24/ic_undraw_male_avatar_323b.xml" value="0.1675" />
-        <entry key="..\:/Users/Asus/Desktop/Esamudaay/Esamudaay/app/src/main/res/drawable/ring.xml" value="0.222" />
-        <entry key="..\:/Users/Asus/Desktop/Esamudaay/Esamudaay/app/src/main/res/layout/activity_main.xml" value="0.21927083333333333" />
-        <entry key="..\:/Users/Asus/Desktop/Esamudaay/Esamudaay/app/src/main/res/layout/activity_vendor_detail.xml" value="0.21927083333333333" />
-        <entry key="..\:/Users/Asus/Desktop/Esamudaay/Esamudaay/app/src/main/res/layout/categories_row_view.xml" value="0.21927083333333333" />
-        <entry key="..\:/Users/Asus/Desktop/Esamudaay/Esamudaay/app/src/main/res/layout/fragment_stats_bottom_sheet.xml" value="0.21927083333333333" />
-        <entry key="..\:/Users/Asus/Desktop/Esamudaay/Esamudaay/app/src/main/res/layout/vendors_detail_row_view.xml" value="0.4" />
-        <entry key="..\:/Users/Asus/Desktop/Esamudaay/Esamudaay/app/src/main/res/layout/vendors_row_view.xml" value="0.21927083333333333" />
+        <entry key="..\:/esamudaay/Esamudaay/app/src/main/res/drawable/available_button.xml" value="0.2585" />
+        <entry key="..\:/esamudaay/Esamudaay/app/src/main/res/drawable/buttonbg.xml" value="0.1955" />
+        <entry key="..\:/esamudaay/Esamudaay/app/src/main/res/drawable/custom_ripple_effect.xml" value="0.2595" />
+        <entry key="..\:/esamudaay/Esamudaay/app/src/main/res/drawable/google_button.xml" value="0.1955" />
+        <entry key="..\:/esamudaay/Esamudaay/app/src/main/res/drawable/ic_undraw_profile_pic_ic5t.xml" value="0.1955" />
+        <entry key="..\:/esamudaay/Esamudaay/app/src/main/res/drawable/unavailable_button.xml" value="0.2595" />
+        <entry key="..\:/esamudaay/Esamudaay/app/src/main/res/layout/activity_get_started.xml" value="0.264" />
+        <entry key="..\:/esamudaay/Esamudaay/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/esamudaay/Esamudaay/app/src/main/res/layout/activity_main2.xml" value="0.25416666666666665" />
+        <entry key="..\:/esamudaay/Esamudaay/app/src/main/res/layout/activity_profile.xml" value="0.264" />
+        <entry key="..\:/esamudaay/Esamudaay/app/src/main/res/layout/activity_vendor_detail.xml" value="0.264" />
+        <entry key="..\:/esamudaay/Esamudaay/app/src/main/res/layout/categories_row_view.xml" value="0.536" />
+        <entry key="..\:/esamudaay/Esamudaay/app/src/main/res/layout/error_dialog.xml" value="0.536" />
+        <entry key="..\:/esamudaay/Esamudaay/app/src/main/res/layout/failure_rowview.xml" value="0.536" />
+        <entry key="..\:/esamudaay/Esamudaay/app/src/main/res/layout/fragment_stats_bottom_sheet.xml" value="0.4" />
+        <entry key="..\:/esamudaay/Esamudaay/app/src/main/res/layout/vendors_detail_row_view.xml" value="0.4" />
       </map>
     </option>
   </component>
