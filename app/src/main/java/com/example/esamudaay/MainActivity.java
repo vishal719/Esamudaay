@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity  {
             public void onClick(View view) {
                 for(int i =0; i<list1.size();i++){
                     list1.get(i).getImage().setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.categoryfront));
-                    list1.get(i).getCard().setCardBackgroundColor(Color.parseColor("#D1D1D1"));
+                    list1.get(i).getCard().setCardBackgroundColor(Color.parseColor("#73D1D1D1"));
 
                     binding.furniture.setCardBackgroundColor(Color.parseColor("#FF8400"));
                     binding.furnitureimage.setColorFilter(Color.argb(255, 255, 255, 255));
@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity  {
             public void onClick(View view) {
                 for(int i =0; i<list1.size();i++){
                     list1.get(i).getImage().setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.categoryfront));
-                    list1.get(i).getCard().setCardBackgroundColor(Color.parseColor("#D1D1D1"));
+                    list1.get(i).getCard().setCardBackgroundColor(Color.parseColor("#73D1D1D1"));
 
                     binding.clothing.setCardBackgroundColor(Color.parseColor("#FF8400"));
                     binding.clothingimage.setColorFilter(Color.argb(255, 255, 255, 255));
@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity  {
             public void onClick(View view) {
                 for(int i =0; i<list1.size();i++){
                     list1.get(i).getImage().setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.categoryfront));
-                    list1.get(i).getCard().setCardBackgroundColor(Color.parseColor("#D1D1D1"));
+                    list1.get(i).getCard().setCardBackgroundColor(Color.parseColor("#73D1D1D1"));
 
                     binding.elect.setCardBackgroundColor(Color.parseColor("#FF8400"));
                     binding.electimage.setColorFilter(Color.argb(255, 255, 255, 255));
@@ -151,7 +151,7 @@ public class MainActivity extends AppCompatActivity  {
             public void onClick(View view) {
                 for(int i =0; i<list1.size();i++){
                     list1.get(i).getImage().setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.categoryfront));
-                    list1.get(i).getCard().setCardBackgroundColor(Color.parseColor("#D1D1D1"));
+                    list1.get(i).getCard().setCardBackgroundColor(Color.parseColor("#73D1D1D1"));
 
                     binding.food.setCardBackgroundColor(Color.parseColor("#FF8400"));
                     binding.foodimage.setColorFilter(Color.argb(255, 255, 255, 255));
@@ -166,7 +166,7 @@ public class MainActivity extends AppCompatActivity  {
             public void onClick(View view) {
                 for(int i =0; i<list1.size();i++){
                     list1.get(i).getImage().setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.categoryfront));
-                    list1.get(i).getCard().setCardBackgroundColor(Color.parseColor("#D1D1D1"));
+                    list1.get(i).getCard().setCardBackgroundColor(Color.parseColor("#73D1D1D1"));
 
                     binding.mechanical.setCardBackgroundColor(Color.parseColor("#FF8400"));
                     binding.mechanicalimage.setColorFilter(Color.argb(255, 255, 255, 255));
@@ -180,7 +180,7 @@ public class MainActivity extends AppCompatActivity  {
             public void onClick(View view) {
                 for(int i =0; i<list1.size();i++){
                     list1.get(i).getImage().setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.categoryfront));
-                    list1.get(i).getCard().setCardBackgroundColor(Color.parseColor("#D1D1D1"));
+                    list1.get(i).getCard().setCardBackgroundColor(Color.parseColor("#73D1D1D1"));
 
                     binding.med.setCardBackgroundColor(Color.parseColor("#FF8400"));
                     binding.medimage.setColorFilter(Color.argb(255, 255, 255, 255));
@@ -193,7 +193,7 @@ public class MainActivity extends AppCompatActivity  {
             public void onClick(View view) {
                 for(int i =0; i<list1.size();i++){
                     list1.get(i).getImage().setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.categoryfront));
-                    list1.get(i).getCard().setCardBackgroundColor(Color.parseColor("#D1D1D1"));
+                    list1.get(i).getCard().setCardBackgroundColor(Color.parseColor("#73D1D1D1"));
 
                     binding.shoe.setCardBackgroundColor(Color.parseColor("#FF8400"));
                     binding.shoeimage.setColorFilter(Color.argb(255, 255, 255, 255));
@@ -207,7 +207,7 @@ public class MainActivity extends AppCompatActivity  {
             public void onClick(View view) {
                 for(int i =0; i<list1.size();i++){
                     list1.get(i).getImage().setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.categoryfront));
-                    list1.get(i).getCard().setCardBackgroundColor(Color.parseColor("#D1D1D1"));
+                    list1.get(i).getCard().setCardBackgroundColor(Color.parseColor("#73D1D1D1"));
 
                     binding.wearable.setCardBackgroundColor(Color.parseColor("#FF8400"));
                     binding.wearableimage.setColorFilter(Color.argb(255, 255, 255, 255));
@@ -221,7 +221,7 @@ public class MainActivity extends AppCompatActivity  {
             public void onClick(View view) {
                 for(int i =0; i<list1.size();i++){
                     list1.get(i).getImage().setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.categoryfront));
-                    list1.get(i).getCard().setCardBackgroundColor(Color.parseColor("#D1D1D1"));
+                    list1.get(i).getCard().setCardBackgroundColor(Color.parseColor("#73D1D1D1"));
 
                     binding.fitness.setCardBackgroundColor(Color.parseColor("#FF8400"));
                     binding.fitnessimage.setColorFilter(Color.argb(255, 255, 255, 255));

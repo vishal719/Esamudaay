@@ -2,16 +2,23 @@ package com.example.esamudaay.Adapter;
 
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.esamudaay.R;
@@ -57,6 +64,42 @@ public class VendorDetailAdapter extends RecyclerView.Adapter<VendorDetailAdapte
         }
         else
             holder.complaince.setText("Approved");
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!model1.getFailurereasons().get(0).equals("null")){
+
+                    FailureAdapter adapter = new FailureAdapter(model1.getFailurereasons());
+                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false);
+
+
+                    Dialog dialog = new Dialog(view.getContext());
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+                dialog.setContentView(R.layout.error_dialog);
+                dialog.setCanceledOnTouchOutside(true);
+                dialog.setCancelable(true);
+                RecyclerView recyclerView = dialog.findViewById(R.id.recyclerView);
+                recyclerView.setLayoutManager(linearLayoutManager);
+                recyclerView.setAdapter(adapter);
+
+                dialog.show();
+
+
+                dialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
+                    @Override
+                    public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+                        if (keyCode == android.view.KeyEvent.KEYCODE_BACK) {
+                            dialog.cancel();
+                            return true;
+                        }
+                        return false;
+                    }
+                });
+            }
+            }
+        });
 
     }
 
