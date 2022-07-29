@@ -65,6 +65,13 @@ public class VendorDetailAdapter extends RecyclerView.Adapter<VendorDetailAdapte
         else
             holder.complaince.setText("Compliant");
 
+
+        if(holder.complaince.getText().equals("Compliant")){
+            holder.complaince.setBackground(ContextCompat.getDrawable(holder.itemView.getContext(), R.drawable.available_button));
+            holder.complaince.setTextColor(Color.parseColor("#00CB5F"));
+        }
+
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

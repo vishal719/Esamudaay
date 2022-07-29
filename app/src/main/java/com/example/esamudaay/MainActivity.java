@@ -37,7 +37,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity  {
 
     ActivityMainBinding binding;
-    ArrayList<VendersModel> list;
+    ArrayList<VendersModel> list,list2;
     VendorsAdapter adapter;
     FirebaseDatabase database;
     ArrayList<CategoriesModel> list1;
@@ -84,18 +84,20 @@ public class MainActivity extends AppCompatActivity  {
 
         database = FirebaseDatabase.getInstance("https://esamudaay-4ae43-default-rtdb.asia-southeast1.firebasedatabase.app/");
         list = new ArrayList<>();
+        list2 = new ArrayList<>();
         list1 = new ArrayList<>();
-        list.add(new VendersModel("0635ecff-8fde-4185-8cd8-167efda42bbc", "Ravada Stores", R.drawable.ravada2));
-        list.add(new VendersModel("4a1bc143-a3c0-4249-a942-f30b5801aa30", "Zara", R.drawable.zara_2));
-        list.add(new VendersModel("c09f2b53-ae0d-435f-b428-761586c696a1", "Poorva", R.drawable.poorva));
-        list.add(new VendersModel("e0aa3966-6880-42f8-84a6-ed31d3e349a2", "Bake master", R.drawable.bake_master));
-        list.add(new VendersModel("0635ecff-8fde-4185-8cd8-167efda42bbcs", "Burger Up", R.drawable.burgerup));
-        list.add(new VendersModel("0635ecff-8fde-4185-8cd8-w", "Home Grow", R.drawable.home_grow));
-        list.add(new VendersModel("0635ecff-8fde-4185-8cd8-167efda42bbc", "Sweets", R.drawable.ravada));
-        list.add(new VendersModel("0635ecff-8fde-4185-8cd8-167efda42bbcd", "Noodlers", R.drawable.noodler));
+        list.add(new VendersModel("0635ecff-8fde-4185-8cd8-167efda42bbc", "Ravada Stores", R.drawable.ravada2,"Food"));
+        list.add(new VendersModel("4a1bc143-a3c0-4249-a942-f30b5801aa30", "Zara", R.drawable.zara_2,"Food,Clothing"));
+        list.add(new VendersModel("c09f2b53-ae0d-435f-b428-761586c696a1", "Poorva", R.drawable.poorva,"Food,Medicine"));
+        list.add(new VendersModel("e0aa3966-6880-42f8-84a6-ed31d3e349a2", "Bake master", R.drawable.bake_master,"Medicine,Food"));
+        list.add(new VendersModel("0635ecff-8fde-4185-8cd8-167efda42bbcs", "Burger Up", R.drawable.burgerup,"Food"));
+        list.add(new VendersModel("0635ecff-8fde-4185-8cd8-w", "Home Grow", R.drawable.home_grow,"Food"));
+        list.add(new VendersModel("0635ecff-8fde-4185-8cd8-167efda42bbc", "Sweets", R.drawable.ravada,"Food"));
+        list.add(new VendersModel("0635ecff-8fde-4185-8cd8-167efda42bbcd", "Noodlers", R.drawable.noodler,"Food"));
 
-
-
+        for(int i=0;i<list.size();i++){
+            list2.add(list.get(i));
+        }
 
         list1.add(new CategoriesModel("Furniture", binding.furnitureimage ,binding.furniture ));
         list1.add(new CategoriesModel("Clothing",binding.clothingimage ,binding.clothing));
@@ -106,6 +108,9 @@ public class MainActivity extends AppCompatActivity  {
         list1.add(new CategoriesModel("Shoe", binding.shoeimage ,binding.shoe));
         list1.add(new CategoriesModel("Wearable", binding.wearableimage ,binding.wearable));
         list1.add(new CategoriesModel("Fitness", binding.fitnessimage ,binding.fitness));
+
+        binding.food.setCardBackgroundColor(Color.parseColor("#FF8400"));
+        binding.foodimage.setColorFilter(Color.argb(255, 255, 255, 255));
 
         binding.furniture.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -130,6 +135,21 @@ public class MainActivity extends AppCompatActivity  {
                     binding.clothing.setCardBackgroundColor(Color.parseColor("#FF8400"));
                     binding.clothingimage.setColorFilter(Color.argb(255, 255, 255, 255));
                 }
+                list.clear();
+                adapter.notifyDataSetChanged();
+
+                for(int j=0;j<list2.size();j++)
+                {
+                    String category = list2.get(j).getCategory();
+                    String[] strArray = null;
+                    strArray = category.split(",");
+                    for(int k=0;k<strArray.length;k++){
+                        if(strArray[k].equals("Clothing"));
+                        list.add(list2.get(j));
+                        adapter.notifyDataSetChanged();
+                    }
+                }
+                adapter.notifyDataSetChanged();
             }
         });
 

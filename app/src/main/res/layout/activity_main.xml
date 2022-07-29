@@ -206,32 +206,6 @@
 
             </androidx.cardview.widget.CardView>
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/furniture"
-                android:layout_width="44dp"
-                android:layout_height="44dp"
-                android:layout_gravity="left"
-                android:layout_marginRight="12dp"
-                android:clickable="true"
-                app:cardBackgroundColor="#73D1D1D1"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="0dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <ImageView
-                    android:id="@+id/furnitureimage"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_gravity="center"
-                    android:layout_margin="5dp"
-                    android:gravity="center"
-                    android:src="@drawable/furniture"
-                    app:tint="#D1595959" />
-
-            </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/clothing"
@@ -256,6 +230,34 @@
                     android:layout_margin="5dp"
                     android:gravity="center"
                     android:src="@drawable/clothing"
+                    app:tint="#D1595959" />
+
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/med"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_gravity="left"
+                android:layout_marginRight="12dp"
+                android:clickable="true"
+                app:cardBackgroundColor="#73D1D1D1"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/medimage"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:src="@drawable/medicine"
                     app:tint="#D1595959" />
 
             </androidx.cardview.widget.CardView>
@@ -313,9 +315,8 @@
                     app:tint="#D1595959" />
 
             </androidx.cardview.widget.CardView>
-
             <androidx.cardview.widget.CardView
-                android:id="@+id/med"
+                android:id="@+id/furniture"
                 android:layout_width="44dp"
                 android:layout_height="44dp"
                 android:layout_gravity="left"
@@ -330,13 +331,13 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
-                    android:id="@+id/medimage"
+                    android:id="@+id/furnitureimage"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_gravity="center"
                     android:layout_margin="5dp"
                     android:gravity="center"
-                    android:src="@drawable/medicine"
+                    android:src="@drawable/furniture"
                     app:tint="#D1595959" />
 
             </androidx.cardview.widget.CardView>

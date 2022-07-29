@@ -5,14 +5,16 @@ public class VendersModel {
     private String id;
     private String name;
     private int image;
+    private String category;
 
     public VendersModel() {
     }
 
-    public VendersModel(String id, String name, int image) {
+    public VendersModel(String id, String name, int image, String category) {
         this.id = id;
         this.name = name;
         this.image = image;
+        this.category = category;
     }
 
     public String getId() {
@@ -35,4 +37,15 @@ public class VendersModel {
         return image;
     }
 
+    public void setImage(int image) {
+        this.image = image;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
 }

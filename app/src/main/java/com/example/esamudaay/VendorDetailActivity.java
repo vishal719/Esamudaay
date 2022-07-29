@@ -377,9 +377,12 @@ public class VendorDetailActivity extends AppCompatActivity {
                     binding.stats.setTextColor(Color.argb(255, 255, 255, 255));
                 }
 
-
-                StatsBottomSheetFragment statsBottomSheetFragment = new StatsBottomSheetFragment();
-                statsBottomSheetFragment.show(getSupportFragmentManager(), statsBottomSheetFragment.getTag());
+                if(list.size()>0) {
+                    StatsBottomSheetFragment statsBottomSheetFragment = new StatsBottomSheetFragment();
+                    statsBottomSheetFragment.show(getSupportFragmentManager(), statsBottomSheetFragment.getTag());
+                }
+                else
+                    Toast.makeText(VendorDetailActivity.this, "Please retry", Toast.LENGTH_SHORT).show();
             }
         });
 
