@@ -1,5 +1,6 @@
 package com.example.esamudaay.Adapter;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.esamudaay.R;
+import com.example.esamudaay.VendorDetailActivity;
 import com.example.esamudaay.models.VendersModel;
 
 import org.w3c.dom.Text;
@@ -39,12 +41,11 @@ public class VendorsAdapter extends RecyclerView.Adapter<VendorsAdapter.viewHold
 
         Glide.with(holder.itemView.getContext()).load(model.getImage()).into(holder.image);
         holder.name.setText(model.getName());
-
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-
-
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), VendorDetailActivity.class);
+                view.getContext().startActivity(intent);
             }
         });
     }
