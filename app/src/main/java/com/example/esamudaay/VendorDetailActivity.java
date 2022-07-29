@@ -92,11 +92,14 @@ public class VendorDetailActivity extends AppCompatActivity {
         binding.productrecycler.setLayoutManager(mLayoutManager);
         binding.productrecycler.setAdapter(adapter);
 
+
         RequestQueue queue = Volley.newRequestQueue(VendorDetailActivity.this);
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, "https://api.test.esamudaay.com/api/v1/businesses/0635ecff-8fde-4185-8cd8-167efda42bbc/report", null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
+                list.clear();
+
                 Log.d("RESPONSE FINAL", String.valueOf(response.length()));
                 for (int i = 0; i < response.length(); i++) {
 
@@ -125,7 +128,6 @@ public class VendorDetailActivity extends AppCompatActivity {
                         }
 
                         list.add(new VendorDetailModel(sku_id,product_name,business_name,error));
-                        list2.add(new VendorDetailModel(sku_id,product_name,business_name,error));
                     adapter.notifyDataSetChanged();
                     } catch (JSONException e) {
                         Log.d("CATCH", e.toString());
@@ -161,6 +163,54 @@ public class VendorDetailActivity extends AppCompatActivity {
                     binding.cardAll.setCardBackgroundColor(Color.parseColor("#FF8400"));
                     binding.all.setTextColor(Color.argb(255, 255, 255, 255));
                 }
+
+                list.clear();
+                RequestQueue queue = Volley.newRequestQueue(VendorDetailActivity.this);
+
+                JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, "https://api.test.esamudaay.com/api/v1/businesses/0635ecff-8fde-4185-8cd8-167efda42bbc/report", null, new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        Log.d("RESPONSE FINAL", String.valueOf(response.length()));
+                        for (int i = 0; i < response.length(); i++) {
+
+                            try {
+                                ArrayList<String> error = new ArrayList<>();
+
+                                JSONObject responseObj = response.getJSONObject(i);
+                                String sku_id = responseObj.getString("sku_id");
+                                String product_name = responseObj.getString("product_name");
+                                String business_name = responseObj.getString("business_name");
+                                String failure_reasons = responseObj.getString("failure_reasons");
+
+                                if(failure_reasons.startsWith("null")){
+                                    error.add("null");
+                                }
+                                else{
+                                    JSONArray array = responseObj.getJSONArray("failure_reasons");
+
+                                    if(array.length()>0)
+                                    {
+                                        for(int j=0; j<array.length();j++){
+                                            error.add(array.getString(j));
+                                        }
+                                    }
+
+                                }
+
+                                list.add(new VendorDetailModel(sku_id,product_name,business_name,error));
+                                adapter.notifyDataSetChanged();
+                            } catch (JSONException e) {
+                                Log.d("CATCH", e.toString());
+                            }
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d( "Fail to get the data..",""+error.toString());
+                    }
+                });
+                queue.add(jsonArrayRequest);
             }
         });
 
@@ -175,6 +225,58 @@ public class VendorDetailActivity extends AppCompatActivity {
                     binding.compliant.setTextColor(Color.argb(255, 255, 255, 255));
 
                 }
+
+                list.clear();
+
+                RequestQueue queue1 = Volley.newRequestQueue(VendorDetailActivity.this);
+
+                JsonArrayRequest jsonArrayRequest1 = new JsonArrayRequest(Request.Method.GET, "https://api.test.esamudaay.com/api/v1/businesses/0635ecff-8fde-4185-8cd8-167efda42bbc/report", null, new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        Log.d("RESPONSE FINAL", String.valueOf(response.length()));
+                        for (int i = 0; i < response.length(); i++) {
+
+                            try {
+                                ArrayList<String> error = new ArrayList<>();
+
+                                JSONObject responseObj = response.getJSONObject(i);
+                                String sku_id = responseObj.getString("sku_id");
+                                String product_name = responseObj.getString("product_name");
+                                String business_name = responseObj.getString("business_name");
+                                String failure_reasons = responseObj.getString("failure_reasons");
+
+                                if(failure_reasons.startsWith("null")){
+                                    error.add("null");
+                                    list.add(new VendorDetailModel(sku_id,product_name,business_name,error));
+
+                                }
+                                else{
+                                    JSONArray array = responseObj.getJSONArray("failure_reasons");
+
+                                    if(array.length()>0)
+                                    {
+                                        for(int j=0; j<array.length();j++){
+                                            error.add(array.getString(j));
+                                        }
+                                    }
+
+                                }
+
+
+                                adapter.notifyDataSetChanged();
+                            } catch (JSONException e) {
+                                Log.d("CATCH", e.toString());
+                            }
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d( "Fail to get the data..",""+error.toString());
+                    }
+                });
+                queue1.add(jsonArrayRequest1);
+
             }
         });
 
@@ -188,6 +290,58 @@ public class VendorDetailActivity extends AppCompatActivity {
                     binding.cardNoncompliant.setCardBackgroundColor(Color.parseColor("#FF8400"));
                     binding.noncompliant.setTextColor(Color.argb(255, 255, 255, 255));
                 }
+
+                list.clear();
+
+                RequestQueue queue2 = Volley.newRequestQueue(VendorDetailActivity.this);
+
+                JsonArrayRequest jsonArrayRequest2 = new JsonArrayRequest(Request.Method.GET, "https://api.test.esamudaay.com/api/v1/businesses/0635ecff-8fde-4185-8cd8-167efda42bbc/report", null, new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        Log.d("RESPONSE FINAL", String.valueOf(response.length()));
+                        for (int i = 0; i < response.length(); i++) {
+
+                            try {
+                                ArrayList<String> error = new ArrayList<>();
+
+                                JSONObject responseObj = response.getJSONObject(i);
+                                String sku_id = responseObj.getString("sku_id");
+                                String product_name = responseObj.getString("product_name");
+                                String business_name = responseObj.getString("business_name");
+                                String failure_reasons = responseObj.getString("failure_reasons");
+
+                                if(failure_reasons.startsWith("null")){
+                                    error.add("null");
+
+                                }
+                                else{
+                                    JSONArray array = responseObj.getJSONArray("failure_reasons");
+
+                                    if(array.length()>0)
+                                    {
+                                        for(int j=0; j<array.length();j++){
+                                            error.add(array.getString(j));
+                                        }
+                                    }
+                                    list.add(new VendorDetailModel(sku_id,product_name,business_name,error));
+
+
+                                }
+
+
+                                adapter.notifyDataSetChanged();
+                            } catch (JSONException e) {
+                                Log.d("CATCH", e.toString());
+                            }
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d( "Fail to get the data..",""+error.toString());
+                    }
+                });
+                queue2.add(jsonArrayRequest2);
             }
         });
 
