@@ -11,27 +11,20 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import com.example.esamudaay.databinding.ActivityGetStartedBinding;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.Objects;
 
 public class GetStartedActivity extends AppCompatActivity {
     private static final int RC_SIGN_IN = 100;
@@ -39,6 +32,7 @@ public class GetStartedActivity extends AppCompatActivity {
     private GoogleSignInClient mGoogleSignInClient;
     FirebaseDatabase database;
     FirebaseAuth mAuth;
+
     public static void setWindowFlag(Activity activity, final int bits, boolean on) {
         Window win = activity.getWindow();
         WindowManager.LayoutParams winParams = win.getAttributes();
@@ -87,7 +81,6 @@ public class GetStartedActivity extends AppCompatActivity {
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
 
-
         binding.loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,20 +90,18 @@ public class GetStartedActivity extends AppCompatActivity {
                             binding.loginPassword.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                            if(task.isSuccessful()){
+                            if (task.isSuccessful()) {
                                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                                Intent intent = new Intent(GetStartedActivity.this,MainActivity.class);
+                                Intent intent = new Intent(GetStartedActivity.this, MainActivity.class);
                                 startActivity(intent);
                                 finish();
-                            }
-                            else {
-                                Toast.makeText(GetStartedActivity.this,"This user does not exist",Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(GetStartedActivity.this, "This user does not exist", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
-                }
-                catch (IllegalArgumentException ex){
-                    Toast.makeText(GetStartedActivity.this,"Please enter the login details",Toast.LENGTH_SHORT).show();
+                } catch (IllegalArgumentException ex) {
+                    Toast.makeText(GetStartedActivity.this, "Please enter the login details", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -118,10 +109,9 @@ public class GetStartedActivity extends AppCompatActivity {
         binding.forgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(binding.loginEmail.getText().toString().trim().equals("")){
+                if (binding.loginEmail.getText().toString().trim().equals("")) {
                     Toast.makeText(GetStartedActivity.this, "Please enter an Email address", Toast.LENGTH_SHORT).show();
-                }
-                else{
+                } else {
 
                     FirebaseAuth auth = FirebaseAuth.getInstance();
                     String emailAddress = binding.loginEmail.getText().toString().trim();
@@ -135,7 +125,7 @@ public class GetStartedActivity extends AppCompatActivity {
                                     }
                                 }
                             });
-                }
+                    }
             }
         });
 
