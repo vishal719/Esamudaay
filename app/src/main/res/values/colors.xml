@@ -7,4 +7,29 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="background2">#F5F5F5</color>
+    <color name="background3">#BABABA</color>
+    <color name="AppTextColour">#DB2E2E2E</color>
+    <color name="icon_color">#DB5C5A5A</color>
+    <color name="facebook">#3F51B5</color>
+    <color name="Reject">#42047E</color>
+    <color name="BasketCard">#FB6401</color>
+    <color name="TennisCard">#0F87E8</color>
+    <color name="main_background">#211A2C</color>
+    <color name="yellow_icon_color">#FBC820</color>
+    <color name="basket">#DE0000</color>
+
+    <color name="cricket">#FF9437</color>
+    <color name="volley">#FFEB6B</color>
+    <color name="tt">#60cbe0</color>
+    <color name="badminton">#2BFF56</color>
+    <color name="football">#ff7378</color>
+    <color name="tennis">#5b93ff</color>
+    <color name="backgroundshimmer">#dddddd</color>
+    <color name="graphLine">#008A5D</color>
+
+    <color name="swim">#9D8BFF</color>
+    <color name="hockey">#FF9030</color>
+    <color name="golf">#46FFCB</color>
+    <color name="chess">#C6FF5C</color>
 </resources>
