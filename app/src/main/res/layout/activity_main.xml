@@ -441,4 +441,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ll" />
 
+    <ImageView
+        android:layout_width="180dp"
+        android:id="@+id/notfound"
+        android:visibility="invisible"
+        android:layout_height="180dp"
+        android:src="@drawable/ic_undraw_not_found_5l0w"
+        app:layout_constraintBottom_toBottomOf="@+id/vendors_list"
+        app:layout_constraintEnd_toEndOf="@+id/vendors_list"
+        app:layout_constraintStart_toStartOf="@+id/vendors_list"
+        app:layout_constraintTop_toTopOf="@+id/vendors_list" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

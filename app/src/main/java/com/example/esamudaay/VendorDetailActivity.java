@@ -38,6 +38,7 @@ import com.example.esamudaay.models.CategoriesModel;
 import com.example.esamudaay.models.SortModel;
 import com.example.esamudaay.models.VendersModel;
 import com.example.esamudaay.models.VendorDetailModel;
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -60,6 +61,7 @@ public class VendorDetailActivity extends AppCompatActivity {
     SharedPreferences prefs1;
     SharedPreferences.Editor editor;
     String url = "";
+    ShimmerFrameLayout mShimmerViewContainer;
 
     public static void setWindowFlag(Activity activity, final int bits, boolean on) {
         Window win = activity.getWindow();
@@ -96,21 +98,54 @@ public class VendorDetailActivity extends AppCompatActivity {
         prefs1 = getSharedPreferences(getIntent().getStringExtra("id"), Context.MODE_PRIVATE);
         prefs1.edit().clear().commit();
         prefs1 = getSharedPreferences(getIntent().getStringExtra("id"), Context.MODE_PRIVATE);
-        ArrayList<Integer>  foodimages= new ArrayList<>();
-        foodimages.add(R.drawable.a1);
-        foodimages.add(R.drawable.a2);
-        foodimages.add(R.drawable.a3);
-        foodimages.add(R.drawable.a4);
-        foodimages.add(R.drawable.a5);
-        foodimages.add(R.drawable.a6);
-        foodimages.add(R.drawable.a7);
-        foodimages.add(R.drawable.a8);
 
+        ArrayList<Integer>  revada= new ArrayList<>();
+        revada.add(R.drawable.a1);
+        revada.add(R.drawable.a2);
+        revada.add(R.drawable.a3);
+        revada.add(R.drawable.a4);
+        revada.add(R.drawable.a6);
+        revada.add(R.drawable.a7);
+
+        ArrayList<Integer>  bake= new ArrayList<>();
+        bake.add(R.drawable.b1);
+        bake.add(R.drawable.b2);
+        bake.add(R.drawable.b3);
+        bake.add(R.drawable.b4);
+        bake.add(R.drawable.b5);
+        bake.add(R.drawable.b6);
+
+        ArrayList<Integer>  poorva= new ArrayList<>();
+        poorva.add(R.drawable.c1);
+        poorva.add(R.drawable.c2);
+        poorva.add(R.drawable.c3);
+        poorva.add(R.drawable.c4);
+
+        ArrayList<Integer>  zara= new ArrayList<>();
+        zara.add(R.drawable.imageplaceholder);
+
+
+        mShimmerViewContainer = findViewById(R.id.shimmer_view_container);
         url = "https://api.test.esamudaay.com/api/v1/businesses/"+getIntent().getStringExtra("id").trim()+"/report";
         System.out.println("url" + url);
+        mShimmerViewContainer.startShimmer();
+        VendorDetailAdapter adapter;
+        if(getIntent().getStringExtra("id").trim().equals("0635ecff-8fde-4185-8cd8-167efda42bbc")) {
+
+             adapter = new VendorDetailAdapter(list, revada);
+        }
+        else if(getIntent().getStringExtra("id").trim().equals("c09f2b53-ae0d-435f-b428-761586c696a1")) {
+
+            adapter = new VendorDetailAdapter(list, poorva);
+        }
+        else if(getIntent().getStringExtra("id").trim().equals("e0aa3966-6880-42f8-84a6-ed31d3e349a2")) {
+
+          adapter = new VendorDetailAdapter(list, bake);
+        }
+        else
+           adapter = new VendorDetailAdapter(list, zara);
 
 
-        VendorDetailAdapter adapter = new VendorDetailAdapter(list, foodimages);
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(VendorDetailActivity.this,LinearLayoutManager.VERTICAL,false);
         binding.productrecycler.setLayoutManager(mLayoutManager);
         binding.productrecycler.setAdapter(adapter);
@@ -157,6 +192,8 @@ public class VendorDetailActivity extends AppCompatActivity {
                         list2.add(new VendorDetailModel(sku_id,product_name,business_name,error));
 
                         adapter.notifyDataSetChanged();
+                        mShimmerViewContainer.stopShimmer();
+                        mShimmerViewContainer.setVisibility(View.INVISIBLE);
                     } catch (JSONException e) {
                         Log.d("CATCH", e.toString());
                     }
@@ -185,6 +222,8 @@ public class VendorDetailActivity extends AppCompatActivity {
         binding.cardAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                binding.notfound.setVisibility(View.INVISIBLE);
                 if(list2.size()!=0){
                 for(int i =0; i<list1.size();i++){
                     list1.get(i).getText().setTextColor(ContextCompat.getColor(VendorDetailActivity.this,R.color.graphLine));
@@ -210,15 +249,22 @@ public class VendorDetailActivity extends AppCompatActivity {
                         }
 
                         adapter.notifyDataSetChanged();
-
+                        mShimmerViewContainer.stopShimmer();
+                        mShimmerViewContainer.setVisibility(View.INVISIBLE);
 
                     }
+                    if(list.size()==0)
+                        binding.notfound.setVisibility(View.VISIBLE);
+                    else
+                        binding.notfound.setVisibility(View.INVISIBLE);
             }}
         });
 
         binding.cardComplaint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                binding.notfound.setVisibility(View.INVISIBLE);
                 if(list2.size()!=0){
                 for(int i =0; i<list1.size();i++) {
                     list1.get(i).getText().setTextColor(ContextCompat.getColor(VendorDetailActivity.this, R.color.graphLine));
@@ -244,7 +290,10 @@ public class VendorDetailActivity extends AppCompatActivity {
                     adapter.notifyDataSetChanged();
 
                     }
-
+                    if(list.size()==0)
+                        binding.notfound.setVisibility(View.VISIBLE);
+                    else
+                        binding.notfound.setVisibility(View.INVISIBLE);
             }}
         });
 
@@ -253,6 +302,8 @@ public class VendorDetailActivity extends AppCompatActivity {
             {
                 @Override
                 public void onClick (View view){
+
+                    binding.notfound.setVisibility(View.INVISIBLE);
                     if(list2.size()!=0){
                 for (int i = 0; i < list1.size(); i++) {
                     list1.get(i).getText().setTextColor(ContextCompat.getColor(VendorDetailActivity.this, R.color.graphLine));
@@ -279,7 +330,10 @@ public class VendorDetailActivity extends AppCompatActivity {
                     adapter.notifyDataSetChanged();
 
                 }
-
+                if(list.size()==0)
+                    binding.notfound.setVisibility(View.VISIBLE);
+                else
+                    binding.notfound.setVisibility(View.INVISIBLE);
             }
             }
         });
@@ -287,6 +341,8 @@ public class VendorDetailActivity extends AppCompatActivity {
         binding.cardstats.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                binding.notfound.setVisibility(View.INVISIBLE);
+
                 for(int i =0; i<list1.size();i++){
                     list1.get(i).getText().setTextColor(ContextCompat.getColor(VendorDetailActivity.this,R.color.graphLine));
                     list1.get(i).getCard().setCardBackgroundColor(Color.parseColor("#FFFFFFFF"));
@@ -314,6 +370,8 @@ public class VendorDetailActivity extends AppCompatActivity {
         binding.searchVendor.setOnSearchClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                binding.notfound.setVisibility(View.INVISIBLE);
+
                 if (binding.orderdetails.getVisibility() == View.VISIBLE){
 
                     binding.orderdetails.setVisibility(View.GONE);

@@ -69,7 +69,6 @@ ArrayList<VendorDetailModel> list;
                         Color.parseColor("#DE0000")));
         pieChart.startAnimation();
 
-        Toast.makeText(getContext(), ""+complaint, Toast.LENGTH_SHORT).show();
         one.setText("Compliant ~"+(complaint*100/size)+"%");
         two.setText("Non-Compliant ~"+(noncomplaint*100/size)+"%");
         return  view;

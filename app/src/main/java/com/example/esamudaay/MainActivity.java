@@ -94,6 +94,7 @@ public class MainActivity extends AppCompatActivity  {
         list = new ArrayList<>();
         list2 = new ArrayList<>();
         list1 = new ArrayList<>();
+        binding.notfound.setVisibility(View.INVISIBLE);
         list.add(new VendersModel("0635ecff-8fde-4185-8cd8-167efda42bbc", "Ravada Stores", R.drawable.ravada2,"Food",""));
         list.add(new VendersModel("4a1bc143-a3c0-4249-a942-f30b5801aa30", "Zara", R.drawable.zara_2,"Food","Clothing"));
         list.add(new VendersModel("c09f2b53-ae0d-435f-b428-761586c696a1", "Poorva", R.drawable.poorva,"Food","Medicine"));
@@ -132,6 +133,8 @@ public class MainActivity extends AppCompatActivity  {
                 }
                 list.clear();
                 adapter.notifyDataSetChanged();
+                binding.notfound.setVisibility(View.VISIBLE);
+
             }
         });
 
@@ -145,6 +148,8 @@ public class MainActivity extends AppCompatActivity  {
                     binding.clothing.setCardBackgroundColor(Color.parseColor("#FF8400"));
                     binding.clothingimage.setColorFilter(Color.argb(255, 255, 255, 255));
                 }
+                binding.notfound.setVisibility(View.INVISIBLE);
+
                 list.clear();
                 adapter.notifyDataSetChanged();
                 for(int j=0;j<list2.size();j++)
@@ -172,6 +177,8 @@ public class MainActivity extends AppCompatActivity  {
                 }
                 list.clear();
                 adapter.notifyDataSetChanged();
+                binding.notfound.setVisibility(View.VISIBLE);
+
             }
         });
 
@@ -185,6 +192,8 @@ public class MainActivity extends AppCompatActivity  {
                     binding.food.setCardBackgroundColor(Color.parseColor("#FF8400"));
                     binding.foodimage.setColorFilter(Color.argb(255, 255, 255, 255));
                 }
+                binding.notfound.setVisibility(View.INVISIBLE);
+
                 list.clear();
                 adapter.notifyDataSetChanged();
                 for(int j=0;j<list2.size();j++)
@@ -214,6 +223,8 @@ public class MainActivity extends AppCompatActivity  {
                 }
                 list.clear();
                 adapter.notifyDataSetChanged();
+                binding.notfound.setVisibility(View.VISIBLE);
+
             }
         });
 
@@ -228,6 +239,8 @@ public class MainActivity extends AppCompatActivity  {
                     binding.med.setCardBackgroundColor(Color.parseColor("#FF8400"));
                     binding.medimage.setColorFilter(Color.argb(255, 255, 255, 255));
                 }
+                binding.notfound.setVisibility(View.INVISIBLE);
+
                 list.clear();
                 adapter.notifyDataSetChanged();
                 for(int j=0;j<list2.size();j++)
@@ -255,6 +268,8 @@ public class MainActivity extends AppCompatActivity  {
                 }
                 list.clear();
                 adapter.notifyDataSetChanged();
+                binding.notfound.setVisibility(View.VISIBLE);
+
             }
         });
 
@@ -271,6 +286,8 @@ public class MainActivity extends AppCompatActivity  {
                 }
                 list.clear();
                 adapter.notifyDataSetChanged();
+                binding.notfound.setVisibility(View.VISIBLE);
+
             }
         });
 
@@ -287,6 +304,8 @@ public class MainActivity extends AppCompatActivity  {
                 }
                 list.clear();
                 adapter.notifyDataSetChanged();
+                binding.notfound.setVisibility(View.VISIBLE);
+
             }
         });
         adapter = new VendorsAdapter(list);
