@@ -12,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -26,17 +28,20 @@ import com.example.esamudaay.models.CategoriesModel;
 import com.example.esamudaay.models.VendorDetailModel;
 
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class VendorDetailAdapter extends RecyclerView.Adapter<VendorDetailAdapter.NewsViewHolder> {
+public class VendorDetailAdapter extends RecyclerView.Adapter<VendorDetailAdapter.NewsViewHolder> implements Filterable {
     ArrayList<VendorDetailModel> list;
+    ArrayList<VendorDetailModel> filter_list;
     ArrayList<Integer> pic = new ArrayList<>();
     private Random randomGenerator;
 
     public VendorDetailAdapter(ArrayList<VendorDetailModel> list, ArrayList<Integer> pic) {
         this.list = list;
         this.pic=pic;
+        filter_list = new ArrayList<>(list);
     }
 
     @NonNull
@@ -123,6 +128,45 @@ public class VendorDetailAdapter extends RecyclerView.Adapter<VendorDetailAdapte
     public int getItemViewType(int position) {
         return position;
     }
+
+    @Override
+    public Filter getFilter() {
+        return filter;
+    }
+
+    private Filter filter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            ArrayList<VendorDetailModel> filtered_list = new ArrayList<>();
+            if(constraint == null || constraint.length() == 0){
+
+                filtered_list.addAll(filter_list);
+            }
+            else{
+                String text = constraint.toString().toLowerCase().trim();
+
+                for(VendorDetailModel item : filter_list ){
+
+                    if(item.getProductname().toLowerCase().trim().contains(text)){
+                        filtered_list.add(item);
+                    }
+                }
+            }
+
+            FilterResults results = new FilterResults() ;
+            results.values = filtered_list;
+
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+
+            filter_list.clear();
+            filter_list.addAll((ArrayList)results.values);
+            notifyDataSetChanged();
+        }
+    };
 
 
     public class NewsViewHolder extends RecyclerView.ViewHolder{

@@ -338,22 +338,14 @@ public class VendorDetailActivity extends AppCompatActivity {
         binding.searchVendor.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                if(binding.orderdetails.getVisibility() == View.VISIBLE){
 
-                    binding.orderdetails.setVisibility(View.INVISIBLE);
-                }
-                else
-                    binding.orderdetails.setVisibility(View.VISIBLE);
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
 
-                if(binding.orderdetails.getVisibility() == View.VISIBLE){
-
-                    binding.orderdetails.setVisibility(View.INVISIBLE);
-                }
+                adapter.getFilter().filter(newText);
                 return false;
             }
         });
