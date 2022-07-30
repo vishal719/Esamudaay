@@ -7,7 +7,7 @@ Cluster App has ben developed for eSamudaay's Hackathon22 held on 29th and 30th 
 
 
 ## Description
-
+Cluster is a business management application for Aggregators. It makes micro-management of different businesses very convenient.
 Cluster aims at providing the verified aggregators under ONDC's protocol, a reliable app which serves all their needs.
 Cluster has been designed keeping in mind the usable representation of data and effortless navigation through different sections.
 Cluster provides categories of businesses for which product compliancy details can be generated.
