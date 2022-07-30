@@ -206,6 +206,9 @@ public class VendorDetailActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.d( "Fail to get the data..",""+error.toString());
+                mShimmerViewContainer.stopShimmer();
+                mShimmerViewContainer.setVisibility(View.INVISIBLE);
+                binding.notfound.setVisibility(View.VISIBLE);
             }
         });
         queue.add(jsonArrayRequest);

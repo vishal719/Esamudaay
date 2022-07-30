@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity  {
         list.add(new VendersModel("e0aa3966-6880-42f8-84a6-ed31d3e349a2", "Bake master", R.drawable.bake_master,"Medicine","Food"));
         list.add(new VendersModel("0635ecff-8fde-4185-8cd8-167efda42bbcs", "Burger Up", R.drawable.burgerup,"Food",""));
         list.add(new VendersModel("0635ecff-8fde-4185-8cd8-w", "Home Grow", R.drawable.home_grow,"Food",""));
-        list.add(new VendersModel("0635ecff-8fde-4185-8cd8-167efda42bbc", "Sweets", R.drawable.ravada,"Food",""));
+        list.add(new VendersModel("0635ecff-8fde-4185-8cd8-167efda42bbc", "Sweeto", R.drawable.ravada,"Food",""));
         list.add(new VendersModel("0635ecff-8fde-4185-8cd8-167efda42bbcd", "Noodlers", R.drawable.noodler,"Food",""));
 
         for(int i=0;i<list.size();i++){
