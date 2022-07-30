@@ -26,13 +26,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.esamudaay.R;
 import com.example.esamudaay.models.CategoriesModel;
 import com.example.esamudaay.models.VendorDetailModel;
+import com.google.android.gms.common.data.DataHolder;
 
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class VendorDetailAdapter extends RecyclerView.Adapter<VendorDetailAdapter.NewsViewHolder> implements Filterable {
+public class VendorDetailAdapter extends RecyclerView.Adapter<VendorDetailAdapter.NewsViewHolder>  {
     ArrayList<VendorDetailModel> list;
     ArrayList<VendorDetailModel> filter_list;
     ArrayList<Integer> pic = new ArrayList<>();
@@ -129,45 +130,48 @@ public class VendorDetailAdapter extends RecyclerView.Adapter<VendorDetailAdapte
         return position;
     }
 
-    @Override
-    public Filter getFilter() {
-        return filter;
+//    @Override
+//    public Filter getFilter() {
+//        return filter;
+//    }
+//
+//    private Filter filter = new Filter() {
+//        @Override
+//        protected FilterResults performFiltering(CharSequence constraint) {
+//            ArrayList<VendorDetailModel> filtered_list = new ArrayList<>();
+//            if(constraint == null || constraint.length() == 0){
+//
+//                filtered_list.addAll(filter_list);
+//            }
+//            else{
+//                String text = constraint.toString().toLowerCase().trim();
+//
+//                for(VendorDetailModel item : filter_list ){
+//
+//                    if(item.getProductname().toLowerCase().trim().contains(text)){
+//                        filtered_list.add(item);
+//                    }
+//                }
+//            }
+//
+//            FilterResults results = new FilterResults() ;
+//            results.values = filtered_list;
+//
+//            return results;
+//        }
+//
+//        @Override
+//        protected void publishResults(CharSequence constraint, FilterResults results) {
+//
+//            filter_list.clear();
+//            filter_list.addAll((ArrayList)results.values);
+//            notifyDataSetChanged();
+//        }
+//    };
+    public void updateList(ArrayList<VendorDetailModel> list1){
+        list = list1;
+        notifyDataSetChanged();
     }
-
-    private Filter filter = new Filter() {
-        @Override
-        protected FilterResults performFiltering(CharSequence constraint) {
-            ArrayList<VendorDetailModel> filtered_list = new ArrayList<>();
-            if(constraint == null || constraint.length() == 0){
-
-                filtered_list.addAll(filter_list);
-            }
-            else{
-                String text = constraint.toString().toLowerCase().trim();
-
-                for(VendorDetailModel item : filter_list ){
-
-                    if(item.getProductname().toLowerCase().trim().contains(text)){
-                        filtered_list.add(item);
-                    }
-                }
-            }
-
-            FilterResults results = new FilterResults() ;
-            results.values = filtered_list;
-
-            return results;
-        }
-
-        @Override
-        protected void publishResults(CharSequence constraint, FilterResults results) {
-
-            filter_list.clear();
-            filter_list.addAll((ArrayList)results.values);
-            notifyDataSetChanged();
-        }
-    };
-
 
     public class NewsViewHolder extends RecyclerView.ViewHolder{
 

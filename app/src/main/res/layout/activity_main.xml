@@ -13,9 +13,10 @@
         android:layout_marginTop="60dp"
         android:layout_marginStart="24dp"
         android:text="Cluster"
+        android:fontFamily="@font/sans"
         android:textColor="@color/black"
+        android:letterSpacing="0.07"
         android:textSize="26dp"
-        android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

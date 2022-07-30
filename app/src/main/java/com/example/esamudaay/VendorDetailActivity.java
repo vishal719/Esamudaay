@@ -51,6 +51,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashMap;
+import java.util.Locale;
 
 public class VendorDetailActivity extends AppCompatActivity {
 
@@ -62,6 +63,8 @@ public class VendorDetailActivity extends AppCompatActivity {
     SharedPreferences.Editor editor;
     String url = "";
     ShimmerFrameLayout mShimmerViewContainer;
+    VendorDetailAdapter adapter;
+
 
     public static void setWindowFlag(Activity activity, final int bits, boolean on) {
         Window win = activity.getWindow();
@@ -129,7 +132,6 @@ public class VendorDetailActivity extends AppCompatActivity {
         url = "https://api.test.esamudaay.com/api/v1/businesses/"+getIntent().getStringExtra("id").trim()+"/report";
         System.out.println("url" + url);
         mShimmerViewContainer.startShimmer();
-        VendorDetailAdapter adapter;
         if(getIntent().getStringExtra("id").trim().equals("0635ecff-8fde-4185-8cd8-167efda42bbc")) {
 
              adapter = new VendorDetailAdapter(list, revada);
@@ -403,12 +405,22 @@ public class VendorDetailActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextChange(String newText) {
 
-                adapter.getFilter().filter(newText);
+                filter(newText.toString());
                 return false;
             }
         });
     }
 
+    void filter(String text){
+        ArrayList<VendorDetailModel> temp = new ArrayList();
+        for(VendorDetailModel d: list2){
+            if(d.getProductname().toLowerCase().contains(text)){
+                temp.add(d);
+            }
+        }
+        //update recyclerview
+        adapter.updateList(temp);
+    }
     @Override
     protected void onResume() {
         super.onResume();
