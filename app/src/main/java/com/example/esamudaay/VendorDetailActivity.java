@@ -3,6 +3,7 @@ package com.example.esamudaay;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.SearchView;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,6 +16,8 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -308,7 +311,52 @@ public class VendorDetailActivity extends AppCompatActivity {
             }
         });
 
+        binding.searchVendor.setOnSearchClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (binding.orderdetails.getVisibility() == View.VISIBLE){
 
+                    binding.orderdetails.setVisibility(View.GONE);
+                }
+                else
+                    binding.orderdetails.setVisibility(View.VISIBLE);
+            }
+        });
+
+        binding.searchVendor.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                if (binding.orderdetails.getVisibility() == View.VISIBLE){
+
+                    binding.orderdetails.setVisibility(View.INVISIBLE);
+                }
+                else
+                    binding.orderdetails.setVisibility(View.VISIBLE);
+                return false;
+            }
+        });
+        binding.searchVendor.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                if(binding.orderdetails.getVisibility() == View.VISIBLE){
+
+                    binding.orderdetails.setVisibility(View.INVISIBLE);
+                }
+                else
+                    binding.orderdetails.setVisibility(View.VISIBLE);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+
+                if(binding.orderdetails.getVisibility() == View.VISIBLE){
+
+                    binding.orderdetails.setVisibility(View.INVISIBLE);
+                }
+                return false;
+            }
+        });
     }
 
     @Override
