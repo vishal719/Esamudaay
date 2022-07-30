@@ -12,12 +12,10 @@ Cluster has also a has profile section with various options.
 Data representation has been made sleek with integration of Caching, Searching, categorizing of information on basis of various parameters.
 ## Demo
 
-Application APK link:
-https://drive.google.com/file/d/1GF0AgURFCGHIEXXwWVsyA38UA3enDE2H/view?usp=sharing
 
 
 
-Usage Detail: (Use Demo login credentials)
+Usage Detail: (Use Demo login credentials): Clone the repository, Open as a project in Android Studio and run.(Only for demo purpose of the hackathon22)
 
 Email: 1@gmail.com 
 
