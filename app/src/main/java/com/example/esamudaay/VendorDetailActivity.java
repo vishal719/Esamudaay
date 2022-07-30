@@ -90,8 +90,9 @@ public class VendorDetailActivity extends AppCompatActivity {
 
         Long tsLong = System.currentTimeMillis()/1000;
         String ts = tsLong.toString();
-        prefs1 = getSharedPreferences("ts", Context.MODE_PRIVATE);
-
+        prefs1 = getSharedPreferences(getIntent().getStringExtra("id"), Context.MODE_PRIVATE);
+        prefs1.edit().clear().commit();
+        prefs1 = getSharedPreferences(getIntent().getStringExtra("id"), Context.MODE_PRIVATE);
         ArrayList<Integer>  foodimages= new ArrayList<>();
         foodimages.add(R.drawable.a1);
         foodimages.add(R.drawable.a2);
@@ -104,6 +105,7 @@ public class VendorDetailActivity extends AppCompatActivity {
 
         url = "https://api.test.esamudaay.com/api/v1/businesses/"+getIntent().getStringExtra("id").trim()+"/report";
         System.out.println("url" + url);
+
 
         VendorDetailAdapter adapter = new VendorDetailAdapter(list, foodimages);
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(VendorDetailActivity.this,LinearLayoutManager.VERTICAL,false);
@@ -156,6 +158,7 @@ public class VendorDetailActivity extends AppCompatActivity {
                         Log.d("CATCH", e.toString());
                     }
                 }
+                setListToPreferance(ts, list);
             }
         }, new Response.ErrorListener() {
             @Override
@@ -164,7 +167,6 @@ public class VendorDetailActivity extends AppCompatActivity {
             }
         });
         queue.add(jsonArrayRequest);
-
 
 
         list1 = new ArrayList<>();
@@ -180,6 +182,7 @@ public class VendorDetailActivity extends AppCompatActivity {
         binding.cardAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(list2.size()!=0){
                 for(int i =0; i<list1.size();i++){
                     list1.get(i).getText().setTextColor(ContextCompat.getColor(VendorDetailActivity.this,R.color.graphLine));
                     list1.get(i).getCard().setCardBackgroundColor(Color.parseColor("#FFFFFFFF"));
@@ -189,62 +192,31 @@ public class VendorDetailActivity extends AppCompatActivity {
                 }
 
                 list.clear();
-                RequestQueue queue = Volley.newRequestQueue(VendorDetailActivity.this);
+                adapter.notifyDataSetChanged();
 
-                JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        Log.d("RESPONSE FINAL", String.valueOf(response.length()));
-                        for (int i = 0; i < response.length(); i++) {
 
-                            try {
-                                ArrayList<String> error = new ArrayList<>();
 
-                                JSONObject responseObj = response.getJSONObject(i);
-                                String sku_id = responseObj.getString("sku_id");
-                                String product_name = responseObj.getString("product_name");
-                                String business_name = responseObj.getString("business_name");
-                                String failure_reasons = responseObj.getString("failure_reasons");
+                    ArrayList<VendorDetailModel> vendorDetailModelArrayList = new ArrayList<>();
+                    vendorDetailModelArrayList= getMapProductModel(ts);
+                    for(int j=0;j<vendorDetailModelArrayList.size();j++) {
+                        ArrayList<String> array = vendorDetailModelArrayList.get(j).getFailurereasons();
+                        if (array.size() > 0) {
+                            list.add(vendorDetailModelArrayList.get(j));
+                            adapter.notifyDataSetChanged();
 
-                                if(failure_reasons.startsWith("null")){
-                                    error.add("null");
-                                }
-                                else if (!failure_reasons.startsWith("[")){
-                                    error.add(failure_reasons);
-                                }
-
-                                else{
-                                    JSONArray array = responseObj.getJSONArray("failure_reasons");
-
-                                    if(array.length()>0)
-                                    {
-                                        for(int j=0; j<array.length();j++){
-                                            error.add(array.getString(j));
-                                        }
-                                    }
-
-                                }
-
-                                list.add(new VendorDetailModel(sku_id,product_name,business_name,error));
-                                adapter.notifyDataSetChanged();
-                            } catch (JSONException e) {
-                                Log.d("CATCH", e.toString());
-                            }
                         }
+
+                        adapter.notifyDataSetChanged();
+
+
                     }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.d( "Fail to get the data..",""+error.toString());
-                    }
-                });
-                queue.add(jsonArrayRequest);
-            }
+            }}
         });
 
         binding.cardComplaint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(list2.size()!=0){
                 for(int i =0; i<list1.size();i++) {
                     list1.get(i).getText().setTextColor(ContextCompat.getColor(VendorDetailActivity.this, R.color.graphLine));
                     list1.get(i).getCard().setCardBackgroundColor(Color.parseColor("#FFFFFFFF"));
@@ -253,130 +225,59 @@ public class VendorDetailActivity extends AppCompatActivity {
                     binding.compliant.setTextColor(Color.argb(255, 255, 255, 255));
 
                 }
-
                 list.clear();
+                adapter.notifyDataSetChanged();
 
-                RequestQueue queue1 = Volley.newRequestQueue(VendorDetailActivity.this);
-
-                JsonArrayRequest jsonArrayRequest1 = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        for (int i = 0; i < response.length(); i++) {
-
-                            try {
-                                ArrayList<String> error = new ArrayList<>();
-
-                                JSONObject responseObj = response.getJSONObject(i);
-                                String sku_id = responseObj.getString("sku_id");
-                                String product_name = responseObj.getString("product_name");
-                                String business_name = responseObj.getString("business_name");
-                                String failure_reasons = responseObj.getString("failure_reasons");
-
-                                if(failure_reasons.startsWith("null")){
-                                    error.add("null");
-                                    list.add(new VendorDetailModel(sku_id,product_name,business_name,error));
-
-                                }
-                                else if (!failure_reasons.startsWith("[")){
-                                    error.add(failure_reasons);
-                                }
-
-                                else{
-                                    JSONArray array = responseObj.getJSONArray("failure_reasons");
-
-                                    if(array.length()>0)
-                                    {
-                                        for(int j=0; j<array.length();j++){
-                                            error.add(array.getString(j));
-                                        }
-                                    }
-
-                                }
-
-
-                                adapter.notifyDataSetChanged();
-                            } catch (JSONException e) {
-                                Log.d("CATCH", e.toString());
-                            }
-                        }
+                ArrayList<VendorDetailModel> vendorDetailModelArrayList = new ArrayList<>();
+                vendorDetailModelArrayList= getMapProductModel(ts);
+                for(int j=0;j<vendorDetailModelArrayList.size();j++) {
+                    ArrayList<String> array = vendorDetailModelArrayList.get(j).getFailurereasons();
+                    if (array.get(0).equals("null")) {
+                        list.add(vendorDetailModelArrayList.get(j));
+                        adapter.notifyDataSetChanged();
 
                     }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.d( "Fail to get the data..",""+error.toString());
-                    }
-                });
-                queue1.add(jsonArrayRequest1);
 
-            }
+                    adapter.notifyDataSetChanged();
+
+                    }
+
+            }}
         });
 
-        binding.cardNoncompliant.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                for(int i =0; i<list1.size();i++){
-                    list1.get(i).getText().setTextColor(ContextCompat.getColor(VendorDetailActivity.this,R.color.graphLine));
+        binding.cardNoncompliant.setOnClickListener(new View.OnClickListener()
+
+            {
+                @Override
+                public void onClick (View view){
+                    if(list2.size()!=0){
+                for (int i = 0; i < list1.size(); i++) {
+                    list1.get(i).getText().setTextColor(ContextCompat.getColor(VendorDetailActivity.this, R.color.graphLine));
                     list1.get(i).getCard().setCardBackgroundColor(Color.parseColor("#FFFFFFFF"));
 
                     binding.cardNoncompliant.setCardBackgroundColor(Color.parseColor("#FF8400"));
                     binding.noncompliant.setTextColor(Color.argb(255, 255, 255, 255));
                 }
 
+
                 list.clear();
+                adapter.notifyDataSetChanged();
 
-                RequestQueue queue2 = Volley.newRequestQueue(VendorDetailActivity.this);
+                ArrayList<VendorDetailModel> vendorDetailModelArrayList = new ArrayList<>();
+                vendorDetailModelArrayList = getMapProductModel(ts);
+                for (int j = 0; j < vendorDetailModelArrayList.size(); j++) {
+                    ArrayList<String> array = vendorDetailModelArrayList.get(j).getFailurereasons();
+                    if (!array.get(0).equals("null")) {
+                        list.add(vendorDetailModelArrayList.get(j));
+                        adapter.notifyDataSetChanged();
 
-                JsonArrayRequest jsonArrayRequest2 = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        Log.d("RESPONSE FINAL", String.valueOf(response.length()));
-                        for (int i = 0; i < response.length(); i++) {
-
-                            try {
-                                ArrayList<String> error = new ArrayList<>();
-
-                                JSONObject responseObj = response.getJSONObject(i);
-                                String sku_id = responseObj.getString("sku_id");
-                                String product_name = responseObj.getString("product_name");
-                                String business_name = responseObj.getString("business_name");
-                                String failure_reasons = responseObj.getString("failure_reasons");
-
-                                if(failure_reasons.startsWith("null")){
-                                    error.add("null");
-
-                                }
-                                else if (!failure_reasons.startsWith("[")){
-                                    error.add(failure_reasons);
-                                }
-
-                                else{
-                                    JSONArray array = responseObj.getJSONArray("failure_reasons");
-
-                                    if(array.length()>0)
-                                    {
-                                        for(int j=0; j<array.length();j++){
-                                            error.add(array.getString(j));
-                                        }
-                                    }
-                                    list.add(new VendorDetailModel(sku_id,product_name,business_name,error));
-//                                    list2.add(new VendorDetailModel(sku_id, product_name, business_name,error));
-
-                                }
-
-                                adapter.notifyDataSetChanged();
-                            } catch (JSONException e) {
-                                Log.d("CATCH", e.toString());
-                            }
-                        }
                     }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.d( "Fail to get the data..",""+error.toString());
-                    }
-                });
-                queue2.add(jsonArrayRequest2);
+
+                    adapter.notifyDataSetChanged();
+
+                }
+
+            }
             }
         });
 
@@ -427,8 +328,8 @@ public class VendorDetailActivity extends AppCompatActivity {
         editor = prefs1.edit();
         editor.putString(key, json);
         editor.apply();
-    }
 
+    }
 
     public ArrayList<VendorDetailModel>  getMapProductModel(String key) {
         Gson gson = new Gson();
