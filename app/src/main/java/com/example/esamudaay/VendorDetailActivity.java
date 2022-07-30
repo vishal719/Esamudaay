@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -34,13 +36,17 @@ import com.example.esamudaay.models.SortModel;
 import com.example.esamudaay.models.VendersModel;
 import com.example.esamudaay.models.VendorDetailModel;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedHashMap;
 
 public class VendorDetailActivity extends AppCompatActivity {
 
@@ -48,7 +54,8 @@ public class VendorDetailActivity extends AppCompatActivity {
     FirebaseDatabase database;
     ArrayList<VendorDetailModel> list, list2;
     ArrayList<SortModel> list1;
-
+    SharedPreferences prefs1;
+    SharedPreferences.Editor editor;
     String url = "";
 
     public static void setWindowFlag(Activity activity, final int bits, boolean on) {
@@ -75,10 +82,15 @@ public class VendorDetailActivity extends AppCompatActivity {
 
         }
         binding = ActivityVendorDetailBinding.inflate(getLayoutInflater());
+
         setContentView(binding.getRoot());
         list= new ArrayList<>();
         list2= new ArrayList<>();
         database = FirebaseDatabase.getInstance("https://esamudaay-4ae43-default-rtdb.asia-southeast1.firebasedatabase.app/");
+
+        Long tsLong = System.currentTimeMillis()/1000;
+        String ts = tsLong.toString();
+        prefs1 = getSharedPreferences("ts", Context.MODE_PRIVATE);
 
         ArrayList<Integer>  foodimages= new ArrayList<>();
         foodimages.add(R.drawable.a1);
@@ -137,7 +149,9 @@ public class VendorDetailActivity extends AppCompatActivity {
                         }
 
                         list.add(new VendorDetailModel(sku_id,product_name,business_name,error));
-                    adapter.notifyDataSetChanged();
+                        list2.add(new VendorDetailModel(sku_id,product_name,business_name,error));
+
+                        adapter.notifyDataSetChanged();
                     } catch (JSONException e) {
                         Log.d("CATCH", e.toString());
                     }
@@ -154,6 +168,7 @@ public class VendorDetailActivity extends AppCompatActivity {
 
 
         list1 = new ArrayList<>();
+        list2 = new ArrayList<>();
         list1.add(new SortModel( binding.all ,binding.cardAll ));
         list1.add(new SortModel(binding.compliant ,binding.cardComplaint));
         list1.add(new SortModel( binding.noncompliant ,binding.cardNoncompliant));
@@ -246,7 +261,6 @@ public class VendorDetailActivity extends AppCompatActivity {
                 JsonArrayRequest jsonArrayRequest1 = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
-                        Log.d("RESPONSE FINAL", String.valueOf(response.length()));
                         for (int i = 0; i < response.length(); i++) {
 
                             try {
@@ -285,6 +299,7 @@ public class VendorDetailActivity extends AppCompatActivity {
                                 Log.d("CATCH", e.toString());
                             }
                         }
+
                     }
                 }, new Response.ErrorListener() {
                     @Override
@@ -345,10 +360,9 @@ public class VendorDetailActivity extends AppCompatActivity {
                                         }
                                     }
                                     list.add(new VendorDetailModel(sku_id,product_name,business_name,error));
-
+//                                    list2.add(new VendorDetailModel(sku_id, product_name, business_name,error));
 
                                 }
-
 
                                 adapter.notifyDataSetChanged();
                             } catch (JSONException e) {
@@ -392,6 +406,8 @@ public class VendorDetailActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+
     }
 
     @Override
@@ -402,6 +418,26 @@ public class VendorDetailActivity extends AppCompatActivity {
     }
     public ArrayList<VendorDetailModel> getlist()
     {
+                return list2;
+    }
+
+    public void setListToPreferance(String key, ArrayList<VendorDetailModel> list) {
+        Gson gson = new Gson();
+        String json = gson.toJson(list);
+        editor = prefs1.edit();
+        editor.putString(key, json);
+        editor.apply();
+    }
+
+
+    public ArrayList<VendorDetailModel>  getMapProductModel(String key) {
+        Gson gson = new Gson();
+        Type type = new TypeToken<ArrayList<VendorDetailModel>>() {
+        }.getType();
+        ArrayList<VendorDetailModel> list = gson.fromJson(prefs1.getString(key, ""), type);
+        if (list == null) {
+            list = new ArrayList<VendorDetailModel>();
+        }
         return list;
     }
 }
